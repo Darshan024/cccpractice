@@ -52,14 +52,9 @@
 // $s16="Returns the number of words in a string.";
 // echo str_word_count($s16);
 
-$s16="Replaces a portion of a string with another string";
-echo substr_replace($s16,"PORTION",11)."<br>";
-echo substr_replace($s16,"PORTION",-1,7);
-
-
-
-
-
+// $s16="Replaces a portion of a string with another string";
+// echo substr_replace($s16,"PORTION",11,3)."<br>";
+// echo substr_replace($s16,"PORTION",-1,7);
 
 
 ?>
