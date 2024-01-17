@@ -33,6 +33,33 @@
 // $s10="Converts<br> special characters to HTML entities";
 // echo htmlspecialchars($s10);
 
-$s11='Converts<h1> all applicable characters</h1> to HTML entities.';
-echo htmlentities($s11);
+//  issue
+//  $s11="Converts <h1> all applicable characters </h1> to HTML entities.";
+// echo htmlentities($s11);
+
+// $s12="Repeats a string a specified number of times.";
+// echo str_repeat($s12,110);
+
+// $s13="     Reverses a string    ";
+// echo strrev($s13);
+
+// $s14="Randomly shuffles all characters in a string.";
+// echo str_shuffle($s14);
+
+// $s15="Converts a string to an array";
+// print_r (str_split($s15,5));
+
+// $s16="Returns the number of words in a string.";
+// echo str_word_count($s16);
+
+$s16="Replaces a portion of a string with another string";
+echo substr_replace($s16,"PORTION",11)."<br>";
+echo substr_replace($s16,"PORTION",-1,7);
+
+
+
+
+
+
+
 ?>
