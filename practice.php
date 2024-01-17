@@ -35,7 +35,4 @@
 
 $s11='Converts<h1> all applicable characters</h1> to HTML entities.';
 echo htmlentities($s11);
-
-$s11='Converts<h1> all applicable characters</h1> to HTML entities.';
-echo strlen($s11);
 ?>
