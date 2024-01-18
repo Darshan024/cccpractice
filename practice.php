@@ -56,5 +56,38 @@
 // echo substr_replace($s16,"PORTION",11,3)."<br>";
 // echo substr_replace($s16,"PORTION",-1,7);
 
+// $s17="Pads a string to a certain length with another string";
+// $pad_string="_second string";
+// echo str_pad($s17,200,$pad_string,STR_PAD_RIGHT);
+
+// $s18="Locale based string comparison Returns the number of words in a string.";
+// $s19="Returns the number of words in a string.";
+// echo strcoll($s19,$s18);
+// return the 0 if the two string are equal
+// return 1 if the string 2 is less than string 1 return -1 if the string 1 is less than string 2
+
+// $s20="Finds the length of the initial segment not matching a mask";
+// $slen=strlen($s20);
+// echo strcspn($s20,"of",0,$slen);
+// strcspn is used for the find the words are ocuurred before the given string(it counts the spaces also)
+// it takes for inputs first strign,second is letter you want to search,third is where to begin the serach in the string 
+// and fourth is till which length of the serach should go in string(string length).
+
+// $s21="Case-insensitive search for the first occurrence of a string";
+// echo stristr($s21,"length",false)."<br>";
+// echo stristr($s21,"length",true)."<br>";
+// echo stristr($s21,3,true);
+//it is used for the return the string where given needle string is occurred when the third input is false.if its true than return
+// string from string to till the needle striing(not needle string)
+
+// $s22="onverts the first character of a string to uppercase.";
+// echo ucfirst($s22);
+
+// $s23="Converts the first character of a string to lowercase.";
+// echo lcfirst($s23);
+
+// $s24="Converts the first character of a string to uppercase.";
+// echo ucwords($s24);
+
 
 ?>
