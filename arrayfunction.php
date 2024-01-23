@@ -152,31 +152,73 @@ function filtereven($no){
 $result=array_filter($array,"filtereven");
 print_r($result);
 
-echo "<br>(25)<br>";
+echo "<br><br>(25)<br>Output of the map function = ";
+
 $lengths =array (64,81,100,121,144,169);
-function check($word){
-        return sqrt($word);
+function square($w){
+        return $w*$w;
 }
-$result_of_map=array_map('check',$lengths);
+$result_of_map=array_map('square',$lengths);
 print_r($result_of_map);
 
-echo "<br>(25)<br>Output of the reduce function = ";
+echo"<br><br>";
+
+$length =range(10,25);
+function check($w1){
+        if($w1%5==0){
+            return "Can be Divided by 5";
+        }
+        elseif($w1%5!=0){
+            return "Can't divide by 5";
+        }
+}
+$result_of_map=array_map('check',$length);
+print_r($result_of_map);
+
+
+
+echo "<br><br>Star pattern using the map function<br><br>";
+
+$lengths1=[1,2,3,4,5];
+function star($w){
+    return str_repeat('*',$w);
+}
+$re=array_map('star',$lengths1);
+for($i=0;$i<sizeof($re);$i++){
+    echo $re[$i]."<br>";
+}
+
+
+
+echo "<br>(26)<br>Output of the reduce function = ";
 $reduce_array=array(10,20,5,15,85,4);
 function ml($a1,$a2){
         return $a1*=$a2;
 }
 print_r(array_reduce($reduce_array,"ml",1));
+echo"<br>";
+
+$array_to_be=array("hello","world","from","NKl","Harm","Bad");
+function ml1($a1,$a2){
+    return $a1=$a2.(string)100;
+}
+print_r(array_reduce($array_to_be,'ml1'));
 
 echo "<br><br>************7. Array Slicing:***************";
-echo "<br>(26)<br>";
+echo "<br>(27)<br>";
 $array_slice = ['a' => 'apple', 'b' => 'banana', 'c' => 'cherry', 'd' => 'date', 'e' => 'elderberry'];
 print_r(array_slice($array_slice,3,-1,true));
 // if the true is used then the keys are not change in the result array
 echo"<br>";
 print_r(array_slice($array_slice,1,3));
 
-echo "<br>(26)<br>";
+echo "<br>(28)<br>";
 $a2=array("a"=>"purple","b"=>"orange");
 $result_slice= array_splice($array_slice,0,4,$a2);
+print_r($array_slice);
+echo "<br>";
+$array_slice = ['a' => 'apple', 'b' => 'banana', 'c' => 'cherry', 'd' => 'date', 'e' => 'elderberry',"f"=>"Family","g"=>"Germany","h"=>"Hocky"];
+$a2=array("ab"=>"purple","ba"=>"orange");
+$result_slice= array_splice($array_slice,1,-2,$a2,);
 print_r($array_slice);
 ?>
