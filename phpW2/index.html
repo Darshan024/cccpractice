@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>PHP_W2</title>
+</head>
+<body>
+    <table>
+    <form method="post" action ="product.php">
+    <tr>
+    <td><labeL>Product Name</labeL></td>
+    <td><input type="text" name="pname" ><br></td>
+    </tr>
+
+    <tr>
+    <td><label>SKU</label></td>
+    <td><input type="text" name="sku" ><br></td>
+    </tr>
+    <tr>
+    <td><label>product type</label></td>
+    <td> <input type="radio" name="ptype" value="simple">Simple&nbsp;&nbsp;
+        <input type="radio" name="ptype" value="Bundle">Bundle</td>
+    </tr>
+    
+    <tr>
+    <td>Select category</td>
+    <td><select name="category">
+        <option>Bar & Game Room</option>
+        <option>Bedroom</option>
+        <option>Decor</option>
+        <option>Dining & Kitchen</option>
+        <option>Lighting</option>
+        <option>Living Room</option>
+        <option>Mattreses</option>
+        <option>Office</option>
+        <option>Outdoor</option>
+    </select></td>
+    </tr>
+
+    <tr>
+    <td><labeL>Manufacture cost</labeL></td>
+    <td><input type="text" name="mcost" ><br></td>
+    </tr>
+
+    <tr>
+    <td><labeL>Shipping  Cost</labeL></td>
+    <td><input type="text" name="scost" ><br></td>
+    </tr>
+
+    <tr>
+    <td><labeL>Total Cost</labeL></td>
+    <td><input type="text" name="tcost" ></td>
+    </tr>
+
+    <tr>
+    <td><labeL>price</labeL></td>
+    <td><input type="text" name="price" ><br></td>
+    </tr>
+
+    <tr>
+    <td>Select Status</td>
+    <td></Select><select name="status">
+    <option>Enabled</option>
+    <option>Disabled</option>
+    </select></td>
+    </tr>
+
+    <tr>
+    <td><labeL>Created Date</labeL></td>
+    <td><input type="date" name="cdate" ></td>
+    </tr>
+
+    <tr>
+    <td><labeL>Updated Date</labeL></td>
+    <td><input type="date" name="udate" ></td>
+    </tr>
+
+    <tr><td><input type="submit"></td></tr>
+    </form>
+    </table>
+</body>
+</html>
