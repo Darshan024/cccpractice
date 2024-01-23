@@ -21,6 +21,19 @@ if (mysqli_query($conn,$sql)) {
     
 }
 
+// function update($table_name,$data1,$data2){
+//     $column1=$val1=$column2=$value2=[];
+
+//     foreach($data1 as $column1=>$valu1){
+//         $column1="'$column1'";
+//         $value1="'$val1'";
+//     }
+//     foreach($data1 as $column1=>$value1){
+//         $column2="'$column1";
+//         $value2="'$value1'";
+//     }
+//     $sql="UPDATE {$table_name} SET ({$column1})=({$valu1}) WHERE {($column2)}={($value2)};";
+// }
 // echo $pname."<br>";
 // echo $sku."<br>";
 // echo $ptype."<br>";
