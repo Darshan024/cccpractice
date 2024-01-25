@@ -1,8 +1,8 @@
 <?php
 include 'phpfunctions.php';
-include 'sqlfunctions.php';
+include 'sqlfunction.php';
 echo "<pre>";
-$data=$_POST['group1'];
+$data=fetchFromPOST('group1');
 print_r($_POST['group1']);
 $conn=mysqli_connect("localhost","root","","ccc_practice");
 if(!$conn) {

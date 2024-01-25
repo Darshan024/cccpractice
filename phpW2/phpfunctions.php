@@ -1,12 +1,16 @@
 <?php
-function getParam($key){
+function fetchFromPost($key){
     if(isset($_POST[$key])){
         return $_POST[$key];
     }
-    elseif(isset($_GET[$key])){
+}
+function fetFromGet($key){
+    if(isset($_GET[$key])){
         return $_GET[$key];
     }
-    elseif(isset($_REQUEST[$key])){
+}
+function fetchFromRequest($key){
+    if(isset($_REQUEST[$key])){
         return $_REQUEST[$key];
     }
 }
