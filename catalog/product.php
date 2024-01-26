@@ -1,16 +1,37 @@
 <?php
 include 'sql/connection.php';
 include 'sql/functions.php';
-// echo $_GET['action'];
-
-if($_GET['action']=='edit'){
-    $pname=$_GET['id'];
+$action=isset($_GET['action'])?$_GET['action']:null;
+$pname=isset($_GET['id'])?$_GET['id']:null;
+if($action=='edit'){
+    // $pname=$_GET['id'];
     $col=['pname','sku','product_type','category','manufacture_cost','shipping_cost','total_cost','price','stetus','created_at','updated_at'];
     $sql=select('ccc_product',$col)." WHERE pname='$pname'";;
     $result=mysqli_query($con,$sql);
     $row=mysqli_fetch_assoc($result);
 }
-else{}
+
+elseif($action=='delete'){
+    $pname=$_GET['id'];
+    $sql=delete('ccc_product',['pname'=>"$pname"]);
+    if($result=mysqli_query($con,$sql)){
+        echo "Deleted Succesfully";
+    }
+}
+
+else{
+    $row['pname']='';
+    $row['sku']='';
+    $row['product_type']='';
+    $row['category']='';
+    $row['manufacture_cost']='';
+    $row['shipping_cost']='';
+    $row['total_cost']='';
+    $row['price']='';
+    $row['stetus']='';
+    $row['created_at']='';
+    $row['updated_at']='';
+}
 ?>
 
 <html>
@@ -59,22 +80,22 @@ else{}
     </tr>
     <tr>
     <td><label>product type</label></td>
-    <td> <input type="radio" name="group1[product_type]" value="<?php echo $row['product_type']; ?>">Simple&nbsp;&nbsp;
-        <input type="radio" name="group1[product_type]" value="Bundle">Bundle</td>
+    <td> <input type="radio" name="group1[product_type]" value="Simple"<?php echo ($row['product_type']=='simple')?'checked':'';?>>Simple&nbsp;&nbsp;
+        <input type="radio" name="group1[product_type]" value="Bundle"<?php echo ($row['product_type']=='Bundle')?'checked':''; ?>>Bundle</td>
     </tr>
     
     <tr>
     <td>Select category</td>
-    <td><select name="group1[category]" value="<?php echo $row['category']; ?>">
-        <option value="Bar">Bar & Game Room</option>
-        <option value="Bedroom">Bedroom</option>
-        <option value="Decor">Decor</option>
-        <option value="Dining">Dining & Kitchen</option>
-        <option value="Lighting">Lighting</option>
-        <option value="Living_Room">Living Room</option>
-        <option value="Mattreses">Mattreses</option>
-        <option value="Office">Office</option>
-        <option value="Outdoor">Outdoor</option>
+    <td><select name="group1[category]">
+        <option value="Bar"<?php echo($row['category']=='Bar')?'selected':''; ?>>Bar & Game Room</option>
+        <option value="Bedroom"<?php echo($row['category']=='Bedroom')?'selected':''; ?>>Bedroom</option>
+        <option value="Decor"<?php echo($row['category']=='Decor')?'selected':''; ?>>Decor</option>
+        <option value="Dining"<?php echo($row['category']=='Dining')?'selected':''; ?>>Dining & Kitchen</option>
+        <option value="Lighting"<?php echo($row['category']=='Lighting')?'selected':''; ?>>Lighting</option>
+        <option value="Living_Room"<?php echo($row['category']=='Living_Room')?'selected':''; ?>>Living Room</option>
+        <option value="Mattreses"<?php echo($row['category']=='Mattreses')?'selected':''; ?>>Mattreses</option>
+        <option value="Office"<?php echo($row['category']=='Office')?'selected':''; ?>>Office</option>
+        <option value="Outdoor"<?php echo($row['category']=='Outdoor')?'selected':''; ?>>Outdoor</option>
     </select></td>
     </tr>
 
@@ -100,9 +121,9 @@ else{}
 
     <tr>
     <td>Select Status</td>
-    <td></Select><select name="group1[stetus]" value="<?php echo $row['stetus']; ?>">
-    <option>Enabled</option>
-    <option>Disabled</option>
+    <td></Select><select name="group1[stetus]">
+    <option value="Enabled"<?php echo ($row['stetus']=='Enabled')?'selected':'';?> >Enabled</option>
+    <option value="Disabled"<?php echo ($row['stetus']=='Disabled')?'selected':'';?> >Disabled</option>
     </select></td>
     </tr>
 
@@ -116,9 +137,8 @@ else{}
     <td><input type="date" name="group1[updated_at]" value="<?php echo $row['updated_at']; ?>"></td>
     </tr>
 
-    <tr><td><input type="submit"></td></tr>
+    <tr><td><input type="submit" name='submit' value="<?php echo $pname ? 'update':'Insert';?>"></td></tr>
     </form>
     </table>
 </body>
 </html>
-    

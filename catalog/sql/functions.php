@@ -2,16 +2,16 @@
 function insert($table_name,$data){
     $columns=$values=[];
     foreach($data as $col => $val){
-        $columns[]="'$col'";
+        $columns[]="`$col`";
         $values[]="'".addslashes($val)."'";
     }
     
     $columns=implode(",",$columns);
     $values=implode(",",$values);
-    echo "<pre>";
-    print_r($columns);
-    print_r($values);
-    echo "<br>";
+    // echo "<pre>";
+    // print_r($columns);
+    // print_r($values);
+    // echo "<br>";
     return "INSERT INTO {$table_name} ({$columns}) VALUES ({$values});";
 }
 
