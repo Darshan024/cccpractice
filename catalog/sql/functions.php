@@ -1,4 +1,5 @@
 <?php
+include 'connection.php';
 function insert($table_name,$data){
     $columns=$values=[];
     foreach($data as $col => $val){
@@ -18,10 +19,10 @@ function insert($table_name,$data){
 function update($table_name,$data,$where){
     $columns=$whereCond=[];
     foreach($data as $field => $value){
-        $columns[]="$field='$value'";  
+        $columns[]="`$field`='$value'";  
     }
     foreach($where as $field => $value){
-        $whereCond[]="$field='$value'";
+        $whereCond[]="`$field`='$value'";
     }
     $columns=implode(",",$columns);
     $whereCond=implode(",",$whereCond);
@@ -32,7 +33,7 @@ function update($table_name,$data,$where){
 function delete($table_name,$whereCond){
     $data=[];
     foreach($whereCond as $field => $val){
-        $data[]="$field='$val'";
+        $data[]="`$field`='$val'";
     }
     $data=implode(",",$data);
     print_r($data);
@@ -41,16 +42,20 @@ function delete($table_name,$whereCond){
 
 function select($table_name,$columns){
     $col=$where=[];
-    foreach($columns as $field => $value){
-        $col[]="$value";  
-    }
-    $col=implode(",",$col);
-    return "SELECT {$col} FROM {$table_name} ";
+    // foreach($columns as $value){
+    //     $columns[]="`$value`";  
+    // }
+    $columns=implode(",",$columns);
+    return "SELECT {$columns} FROM {$table_name} ";
 }
 
-// $col= ['product_name','sku','category'];
-// $where=['pname'=>'sofa'];
-// select('ccc_product',$col,$where);
-
-
+function getCategories($table_name){
+    global $con;
+    $sql=select('ccc_category',['cat_id','name']);
+    $result=$con->query($sql);
+    $row=$result->fetch_assoc();
+    return $result;
+}
+getCategories('ccc_category');
+// $sql=select('ccc_category',['cat_id','name']);
 ?>

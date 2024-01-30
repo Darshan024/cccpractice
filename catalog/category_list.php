@@ -1,7 +1,7 @@
 <?php
 include 'sql/connection.php';
 include 'sql/functions.php';
-
+// include '../phpW2/sqlfunction1.php';
 $sql=select('ccc_category',['cat_id','name']);
 $result=mysqli_query($con,$sql);
 echo "<table border=1>";

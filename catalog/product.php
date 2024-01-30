@@ -10,15 +10,14 @@ if($action=='edit'){
     $result=mysqli_query($con,$sql);
     $row=mysqli_fetch_assoc($result);
 }
-
 elseif($action=='delete'){
     $pname=$_GET['id'];
     $sql=delete('ccc_product',['pname'=>"$pname"]);
     if($result=mysqli_query($con,$sql)){
         echo "Deleted Succesfully";
+        exit();
     }
 }
-
 else{
     $row['pname']='';
     $row['sku']='';
@@ -95,9 +94,23 @@ else{
         <option value="Living_Room"<?php echo($row['category']=='Living_Room')?'selected':''; ?>>Living Room</option>
         <option value="Mattreses"<?php echo($row['category']=='Mattreses')?'selected':''; ?>>Mattreses</option>
         <option value="Office"<?php echo($row['category']=='Office')?'selected':''; ?>>Office</option>
-        <option value="Outdoor"<?php echo($row['category']=='Outdoor')?'selected':''; ?>>Outdoor</option>
-    </select></td>
+        <option value="Outdoor"<?php echo($row['category']=='Outdoor')?'selected':''; ?>/>Outdoor</option>
+    </select></td>  
     </tr>
+
+    <!-- <tr>
+        <td>Select category</td>
+        <td><select name="category">
+            <?php
+                $result=getCategories('ccc_category');
+                while($r=mysqli_fetch_assoc($result)){
+                    $selected = ($r['cat_id']==$row['category']) ?'selected':'';
+                    echo "<option value='{$r['cat_id']}'>{$r['name']}{$r['cat_id']}</option>";
+                //   echo "<option value='{$row1['cat_id']}'>{$row1['name']}</option>";
+                }
+            ?>
+        </select></td>
+    </tr> -->
 
     <tr>
     <td><labeL>Manufacture cost</labeL></td>
@@ -136,7 +149,6 @@ else{
     <td><labeL>Updated Date</labeL></td>
     <td><input type="date" name="group1[updated_at]" value="<?php echo $row['updated_at']; ?>"></td>
     </tr>
-
     <tr><td><input type="submit" name='submit' value="<?php echo $pname ? 'update':'Insert';?>"></td></tr>
     </form>
     </table>

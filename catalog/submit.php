@@ -14,18 +14,22 @@ $pname=$data1['pname'];
 // $status=$data['stetus'];
 // $created_date=$data['created_at'];
 // $updated_date=$data['upadated_at'];
-
 if($action=='update'){
     $where=['pname'=>"$pname"];
     $sql=update('ccc_product',$data1,$where);
     if($result=mysqli_query($con,$sql)){
-        echo "updated sucessfully";
+        echo "updated sucessfully<br>";
+        echo "<a href='product_list.php'>Prodcut List</a><br>";
+        echo "<a href='product.php'>Insert new product</a>";
+        
 }
 }
 elseif($action=='Insert'){
     $sql=insert('ccc_product',$data1);
     if($result=mysqli_query($con,$sql)){
         echo "inserted sucessfully";
+        echo "<a href='product_list.php'>Prodcut List</a><br>";
+        echo "<a href='product.php'>Insert new Product</a>";
 }
 }
 
