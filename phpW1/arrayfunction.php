@@ -1,4 +1,5 @@
 <?php
+phpinfo();
 echo"*******1. Array Creation and Initialization:********<br>";
 echo "(1)<br>";
 $members=array();

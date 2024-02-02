@@ -14,7 +14,9 @@ elseif($action=='delete'){
     $pname=$_GET['id'];
     $sql=delete('ccc_product',['pname'=>"$pname"]);
     if($result=mysqli_query($con,$sql)){
-        echo "Deleted Succesfully";
+        echo "<br>Deleted Succesfully<br>";
+        echo "<a href='product_list.php'>Prodcut List</a><br>";
+        echo "<a href='product.php'>Insert new product</a>";
         exit();
     }
 }
@@ -134,7 +136,7 @@ else{
 
     <tr>
     <td>Select Status</td>
-    <td></Select><select name="group1[stetus]">
+    <td><select name="group1[stetus]">
     <option value="Enabled"<?php echo ($row['stetus']=='Enabled')?'selected':'';?> >Enabled</option>
     <option value="Disabled"<?php echo ($row['stetus']=='Disabled')?'selected':'';?> >Disabled</option>
     </select></td>

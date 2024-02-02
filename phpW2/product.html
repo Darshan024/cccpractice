@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <style>
         /* body{
@@ -6,102 +7,107 @@
             color: white;
         
         } */
-        .form{
+        .form {
             text-align: center;
             margin-left: auto;
             margin-right: auto;
-            margin-top:50px;
+            margin-top: 50px;
             width: 500px;
             height: 90%;
             /* background-color: rgb(0, 0, 0);
             border-radius: 10px;
             color: white; */
         }
-        input[type='text']{
+
+        input[type='text'] {
             background-color: transparent;
             width: 90%;
             padding: 4px;
-            border:none;
+            border: none;
             border-bottom: 2px solid rgb(0, 0, 0);
             /* color: white; */
         }
-
     </style>
-<title>PHP_W2</title>
+    <title>PHP_W2</title>
 </head>
+
 <body>
     <table class="form">
-    <form method="post" action ="submit.php">
-    <tr>
-    <td><labeL>Product Name</labeL></td>
-    <td><input type="text" name="group1[pname]" ><br></td>
-    </tr>
+        <form method="post" action="submit.php">
+            <tr>
+                <td><labeL>Product Name</labeL></td>
+                <td><input type="text" name="group1[pname]"><br></td>
+            </tr>
 
-    <tr>
-    <td><label>SKU</label></td>
-    <td><input type="text" name="group1[sku]" ><br></td>
-    </tr>
-    <tr>
-    <td><label>product type</label></td>
-    <td> <input type="radio" name="group1[ptype]" value="simple">Simple&nbsp;&nbsp;
-        <input type="radio" name="group1[ptype]" value="Bundle">Bundle</td>
-    </tr>
-    
-    <tr>
-    <td>Select category</td>
-    <td><select name="group1[category]">
-        <option value="">Bar & Game Room</option>
-        <option value="Bedroom">Bedroom</option>
-        <option value="Decor">Decor</option>
-        <option value="Dining">Dining & Kitchen</option>
-        <option value="Lighting">Lighting</option>
-        <option value="Living_Room">Living Room</option>
-        <option value="Mattreses">Mattreses</option>
-        <option value="Office">Office</option>
-        <option value="Outdoor">Outdoor</option>
-    </select></td>
-    </tr>
+            <tr>
+                <td><label>SKU</label></td>
+                <td><input type="text" name="group1[sku]"><br></td>
+            </tr>
+            <tr>
+                <td><label>product type</label></td>
+                <td> <input type="radio" name="group1[ptype]" value="simple">Simple&nbsp;&nbsp;
+                    <input type="radio" name="group1[ptype]" value="Bundle">Bundle
+                </td>
+            </tr>
 
-    <tr>
-    <td><labeL>Manufacture cost</labeL></td>
-    <td><input type="text" name="group1[mcost]" ><br></td>
-    </tr>
+            <tr>
+                <td>Select category</td>
+                <td><select name="group1[category]">
+                        <option value="">Bar & Game Room</option>
+                        <option value="Bedroom">Bedroom</option>
+                        <option value="Decor">Decor</option>
+                        <option value="Dining">Dining & Kitchen</option>
+                        <option value="Lighting">Lighting</option>
+                        <option value="Living_Room">Living Room</option>
+                        <option value="Mattreses">Mattreses</option>
+                        <option value="Office">Office</option>
+                        <option value="Outdoor">Outdoor</option>
+                    </select></td>
+            </tr>
 
-    <tr>
-    <td><labeL>Shipping  Cost</labeL></td>
-    <td><input type="text" name="group1[scost]" ><br></td>
-    </tr>
+            <tr>
+                <td><labeL>Manufacture cost</labeL></td>
+                <td><input type="text" name="group1[mcost]"><br></td>
+            </tr>
 
-    <tr>
-    <td><labeL>Total Cost</labeL></td>
-    <td><input type="text" name="group1[tcost]" ></td>
-    </tr>
+            <tr>
+                <td><labeL>Shipping Cost</labeL></td>
+                <td><input type="text" name="group1[scost]"><br></td>
+            </tr>
 
-    <tr>
-    <td><labeL>price</labeL></td>
-    <td><input type="text" name="group1[price]" ><br></td>
-    </tr>
+            <tr>
+                <td><labeL>Total Cost</labeL></td>
+                <td><input type="text" name="group1[tcost]"></td>
+            </tr>
 
-    <tr>
-    <td>Select Status</td>
-    <td></Select><select name="group1[status]">
-    <option>Enabled</option>
-    <option>Disabled</option>
-    </select></td>
-    </tr>
+            <tr>
+                <td><labeL>price</labeL></td>
+                <td><input type="text" name="group1[price]"><br></td>
+            </tr>
 
-    <tr>
-    <td><labeL>Created Date</labeL></td>
-    <td><input type="date" name="group1[cdate]" ></td>
-    </tr>
+            <tr>
+                <td>Select Status</td>
+                <td></Select><select name="group1[status]">
+                        <option>Enabled</option>
+                        <option>Disabled</option>
+                    </select></td>
+            </tr>
 
-    <tr>
-    <td><labeL>Updated Date</labeL></td>
-    <td><input type="date" name="group1[udate]" ></td>
-    </tr>
+            <tr>
+                <td><labeL>Created Date</labeL></td>
+                <td><input type="date" name="group1[cdate]"></td>
+            </tr>
 
-    <tr><td><input type="submit"></td></tr>
-    </form>
+            <tr>
+                <td><labeL>Updated Date</labeL></td>
+                <td><input type="date" name="group1[udate]"></td>
+            </tr>
+
+            <tr>
+                <td><input type="submit"></td>
+            </tr>
+        </form>
     </table>
 </body>
+
 </html>
