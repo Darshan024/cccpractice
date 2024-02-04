@@ -32,10 +32,10 @@ class Lib_sql_Query_Builder extends Lib_connection{
     {
         $data = [];
         foreach ($whereCond as $field => $val) {
-            $data[] = "'$field'='$val'";
+            $data[] = "`$field`='$val'";
         }
         $data = implode(" AND ", $data);
-        print_r($data);
+        // print_r($data);
         return "DELETE FROM {$table_name} WHERE ({$data})";
     }
 

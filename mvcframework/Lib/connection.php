@@ -18,6 +18,7 @@ class Lib_connection{
         try{
             if($test=$this->connect()->query($sql));
             // var_dump($this->connect()->error);
+            //  print_r($test);
             return $test;
         }
         catch(Exception $e){

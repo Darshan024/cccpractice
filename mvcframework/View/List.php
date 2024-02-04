@@ -21,8 +21,8 @@ class View_List
             foreach ($row as $value) {
                 echo "<td style='padding: 10px; text-align: center;  background-color: #d5ffbf;'>{$value}</td>";
             }
-            echo "<td style='padding: 10px; text-align: center;  background-color: #d5ffbf;'> <a href='index.php?action=delete&id={$row['pname']}'>Edit</a></td>";
-            echo "<td style='padding: 10px; text-align: center;  background-color: #d5ffbf;'> <a href='?action=delete&id={$row['pname']}'>Delete</a></td>";
+            echo "<td style='padding: 10px; text-align: center;  background-color: #d5ffbf;'><a href='?action=edit&id={$row['product_id']}'>Edit</a></td>";
+            echo "<td style='padding: 10px; text-align: center;  background-color: #d5ffbf;'><a href='?action=delete&id={$row['product_id']}'>Delete</a></td>";
 
             echo "</tr>";
         }
