@@ -32,10 +32,10 @@ class View_Product
         }
         $form = "<form action='' method='POST'>";
         $form .= '<div>';
-        $form .= $this->createtextfield("pdata[pname]", "Product_name ",$this->pdata['pname']);
+        $form .= $this->createtextfield("pdata[pname]", "Product Name ",$this->pdata['pname']);
         $form .= '</div>';
         $form .= '<div>';
-        $form .= $this->createtextfield("pdata[sku]", "sku ",$this->pdata['sku']);
+        $form .= $this->createtextfield("pdata[sku]", "sku:",$this->pdata['sku']);
         $form .= '</div>';
 
         $form .= '<div>';
@@ -77,6 +77,7 @@ class View_Product
         $form .= '<div>';
         $form .= $this->createsubmitbtn('Submit');
         $form .= '</div>';
+        $name="Darshan";
         return $form;
     }
     public function createdropdown($name, $title, $options = [], $id = '')
@@ -117,8 +118,6 @@ class View_Product
         $this->pdata=$row;
         return $this->pdata;
     }
-    public function check(){
-        print_r($this->pdata);
-    }
+    
     
 }
