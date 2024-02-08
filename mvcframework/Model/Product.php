@@ -15,7 +15,8 @@ class Model_Product extends Model_Abstract{
         return $data;
     }
     public function delete($data){
-        $sql=$this->getquerybuilder()->delete($this->table_name,["product_id"=>"$data"]);
+        print_r($data);
+        $sql=$this->getquerybuilder()->delete($this->table_name,["product_id"=>$data]);
         $result=($this->getquerybuilder()->exe($sql));
     }
     public function getpdata($id){

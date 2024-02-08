@@ -1,10 +1,10 @@
 <?php
 class Model_Request
 {
-    public function __construct()
-    {
-    }
-    public function getparams($key = '')
+    // public function __construct()
+    // {
+    // }
+    public function getParams($key = '')
     {
         return ($key == '')
 			? $_REQUEST
@@ -13,7 +13,7 @@ class Model_Request
 				: ''
 			);
     }
-    public function getpostdata($key=''){
+    public function getPostdata($key=''){
         return ($key == '')
 			? $_POST
 			: (isset($_POST[$key])
@@ -21,7 +21,7 @@ class Model_Request
 				: ''
 			);
     }
-    public function getquerydata($key=''){
+    public function getQuerydata($key=''){
         return ($key == '')
 			? $_GET
 			: (isset($_GET[$key])
@@ -34,5 +34,10 @@ class Model_Request
             return true;
         }
         return false;
+    }
+    public function getRequestUri(){
+        $_uri= $_SERVER['REQUEST_URI'];
+        $_uri=str_replace("/Practice/mvcframework/","",$_uri);
+        return $_uri;
     }
 }

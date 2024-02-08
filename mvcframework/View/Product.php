@@ -12,12 +12,18 @@ class View_Product
         // $value=isset($this->)
         return "<span>" . $title . '</span><input id="' . $id . '" type="text" name="' . $name . '" value="' . $value . '"/>';
     }
+    
+    public function createhidden($name, $value = '', $id = '')
+    {
+        return '<input type="hidden" name="' . $name . '" value = "' . $value . '" id="' . $id . '"/>';
+    }
     public function createform()
     {
         if(array_key_exists('pname',$this->pdata)){
             $this->pdata=$this->pdata;
         }
-        else{
+        else{ 
+            $this->pdata['product_id']='';
             $this->pdata['pname']='';
             $this->pdata['sku']='';
             $this->pdata['ptype']='';
@@ -30,7 +36,8 @@ class View_Product
             $this->pdata['created_at']='';
             $this->pdata['updated_at']='';
         }
-        $form = "<form action='' method='POST'>";
+        $action = isset($_GET['action']) && $_GET['action'] === 'edit' ? 'update' : 'save';
+        $form = "<form action='$action' method='POST'>";
         $form .= '<div>';
         $form .= $this->createtextfield("pdata[pname]", "Product Name ",$this->pdata['pname']);
         $form .= '</div>';
@@ -73,31 +80,38 @@ class View_Product
         $form .= '<div>';
         $form .= $this->createdatefield("pdata[updated_at]", "Updated date ",$this->pdata['updated_at']);
         $form .= '</div>';
+        
+        $form .= '<div>';
+        $form .= $this->createhidden("pdata[product_id]",$this->pdata['product_id']);
+        $form .= '</div>';
 
         $form .= '<div>';
         $form .= $this->createsubmitbtn('Submit');
         $form .= '</div>';
+        $form .= '<br>';
+        $form .= '<div>';
+        $form .= $this->createsubmitbtn('Update');
+        $form .= '</div>';
         $name="Darshan";
         return $form;
     }
-    public function createdropdown($name, $title, $options = [], $id = '')
+    public function createdropdown($name, $title, $options = [],$check, $id = '')
     {
-
-    
         $dropdown='<span>'.$title.'</span>';
         $dropdown.='<select id="'.$id.'" name="'.$name.'">';
         foreach($options as $value=>$label){
-            $dropdown.='<option value="'.$value.'">'.$label.'</option>';
+            $checked=($check==$value)?'selected':'';
+            $dropdown.='<option value="'.$value.'"'.$checked.'>'.$label.'</option>';
         }
         $dropdown.='</select>';
         return $dropdown;
-    
     }
-    public function createradio($name, $title, $options = [], $id = '')
+    public function createradio($name, $title, $options = [],$check)
     {
         $radio = '<span>' . $title . '</span>';
         foreach ($options as $value => $label) {
-            $radio .= '<input type="radio" name="' . $name . '" value="' . $value . '"/>' . $label;
+            $checked=($check==$value)?'checked':'';
+            $radio .= '<input type="radio" name="' . $name . '" value="' . $value . '"'.$checked.'/>' . $label;
         }
         return $radio;
     }
@@ -117,6 +131,9 @@ class View_Product
         $row=mysqli_fetch_assoc($result);
         $this->pdata=$row;
         return $this->pdata;
+    }
+    public function check(){
+        print_r($this->pdata);
     }
     
     
