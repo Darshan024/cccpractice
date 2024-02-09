@@ -48,6 +48,7 @@ echo"<br>";
 
 $bool1=(bool)"";
 var_dump($bool1);
+echo 
 $bool2=(bool)NULL;
 var_dump($bool2);
 echo"<br>";
@@ -56,9 +57,9 @@ $arr1=(array)true;
 $arr2=(array)"hello";
 var_dump($arr1,$arr2);
 echo"<br>";
-
+$var=40;
 // $un2=(unset)NULL;
 // $un3=(unset)"Hello";
 // var_dump($un1,$un2,$un3);
-
+echo '$var'."$var";
 ?>

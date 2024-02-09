@@ -44,23 +44,4 @@ else{
     echo "Number is not grATER THAN 15";
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     ?>

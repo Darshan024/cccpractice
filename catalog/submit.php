@@ -16,8 +16,8 @@ $pname=$data1['pname'];
 // $updated_date=$data['upadated_at'];
 if($action=='update'){
     $where=['pname'=>"$pname"];
-    $sql=update('ccc_product',$data1,$where);
-    if($result=mysqli_query($con,$sql)){
+    $query=update('ccc_product',$data1,$where);
+    if($result=mysqli_query($con,$query)){
         echo "updated sucessfully<br>";
         echo "<a href='product_list.php'>Prodcut List</a><br>";
         echo "<a href='product.php'>Insert new product</a>";
@@ -32,5 +32,4 @@ elseif($action=='Insert'){
         echo "<a href='product.php'>Insert new Product</a>";
 }
 }
-
 ?>

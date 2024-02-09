@@ -17,21 +17,27 @@ class Data_collection_object{
     {
         foreach($temp as $_temp){
             $this->_data[]=new Data_Object($_temp);
-
         }
     }
     public function getData(){
         return $this->_data;
     }
-    
+    public function check(){
+        print_r($this->_data);
+    }
 }
 $temp[]=["Product_id"=>1,"Sku"=>2,"Product_type"=>3];
 $temp[]=["Product_id"=>1,"Sku"=>2,"Product_type"=>3];
 $obj=new Data_collection_object();
 $obj->addData($temp);
+// $obj->check();
 foreach($obj->getData() as $_data){
     print_r($_data->getProduct_id());
 }
 // print_r($obj);
-// print_r($obj->getSku());
-// print_r($obj->getProduct_type());
+foreach($obj->getData() as $_data){
+    print_r($_data->getSku());
+}
+foreach($obj->getData() as $_data){
+    print_r($_data->getProduct_type());
+}

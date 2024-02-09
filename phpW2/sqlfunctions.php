@@ -29,7 +29,7 @@ function update($table_name, $data, $where)
 
     $columns = implode(",", $columns);
     $whereCond = implode(" AND ", $whereCond);
-    echo "UPDATE {$table_name} SET ({$columns}) WHERE ({$whereCond});";
+    return "UPDATE {$table_name} SET ({$columns}) WHERE ({$whereCond});";
 }
 
 function delete($table_name, $whereCond = [])
@@ -39,7 +39,7 @@ function delete($table_name, $whereCond = [])
         $data[] = "'$field'='$val'";
     }
     $data = implode(" AND ", $data);
-    echo "DELETE FROM {$table_name} WHERE ({$data})";
+    return "DELETE FROM {$table_name} WHERE ({$data})";
 }
 $whereCond = [
     ['cat_id' => 1],

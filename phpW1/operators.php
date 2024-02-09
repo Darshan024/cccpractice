@@ -73,7 +73,7 @@ echo"<br>(21)";
 if($lo==10 && $lo1=="Hello"){ echo "Hello And Op pass";}
 else{echo "And Op failed";}
 echo"<br>(22)";
-if($lo==12 || $lo1=="Hell"){ echo "Or OP pass";}
+if($lo==10 && $lo1=="Hell"){ echo "Or OP pass";}
 else{echo "Or op failed";}
 
 echo"<br>(23)";

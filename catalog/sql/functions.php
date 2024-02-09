@@ -32,7 +32,6 @@ function delete($table_name,$whereCond){
         $data[]="`$field`='$val'";
     }
     $data=implode("AND",$data);
-    print_r($data);
     return "DELETE FROM {$table_name} WHERE {$data}";
 }
 
@@ -50,5 +49,4 @@ function getCategories($table_name){
     return $result;
 }
 getCategories('ccc_category');
-// $sql=select('ccc_category',['cat_id','name']);
 ?>

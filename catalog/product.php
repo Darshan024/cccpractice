@@ -4,16 +4,15 @@ include 'sql/functions.php';
 $action=isset($_GET['action'])?$_GET['action']:null;
 $pname=isset($_GET['id'])?$_GET['id']:null;
 if($action=='edit'){
-    // $pname=$_GET['id'];
-    $col=['pname','sku','product_type','category','manufacture_cost','shipping_cost','total_cost','price','stetus','created_at','updated_at'];
+    $col=['pname','sku','ptype','category','manufacture_cost','shipping_cost','total_cost','price','stetus','created_at','updated_at'];
     $sql=select('ccc_product',$col)." WHERE pname='$pname'";;
     $result=mysqli_query($con,$sql);
     $row=mysqli_fetch_assoc($result);
 }
 elseif($action=='delete'){
     $pname=$_GET['id'];
-    $sql=delete('ccc_product',['pname'=>"$pname"]);
-    if($result=mysqli_query($con,$sql)){
+    $query=delete('ccc_product',['pname'=>"$pname"]);
+    if($result=mysqli_query($con,$query)){
         echo "<br>Deleted Succesfully<br>";
         echo "<a href='product_list.php'>Prodcut List</a><br>";
         echo "<a href='product.php'>Insert new product</a>";
@@ -23,7 +22,7 @@ elseif($action=='delete'){
 else{
     $row['pname']='';
     $row['sku']='';
-    $row['product_type']='';
+    $row['ptype']='';
     $row['category']='';
     $row['manufacture_cost']='';
     $row['shipping_cost']='';
@@ -81,8 +80,8 @@ else{
     </tr>
     <tr>
     <td><label>product type</label></td>
-    <td> <input type="radio" name="group1[product_type]" value="Simple"<?php echo ($row['product_type']=='simple')?'checked':'';?>>Simple&nbsp;&nbsp;
-        <input type="radio" name="group1[product_type]" value="Bundle"<?php echo ($row['product_type']=='Bundle')?'checked':''; ?>>Bundle</td>
+    <td> <input type="radio" name="group1[ptype]" value="Simple"<?php echo ($row['ptype']=='simple')?'checked':'';?>>Simple&nbsp;&nbsp;
+        <input type="radio" name="group1[ptype]" value="Bundle"<?php echo ($row['ptype']=='Bundle')?'checked':''; ?>>Bundle</td>
     </tr>
     
     <tr>

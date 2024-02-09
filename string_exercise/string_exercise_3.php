@@ -9,5 +9,5 @@ else{
     echo "Cat Not Present";
 }
 
-echo "<br><br>First 20 Characters of the string = ".substr($sentence,0,19);
+echo "<br><br>First 20 Characters of the string = ".substr($sentence,0,20);
 ?>

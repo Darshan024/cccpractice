@@ -5,6 +5,6 @@ function Fibonacci($n){
     }
     return Fibonacci($n-1)+Fibonacci($n-2);
 }
-echo Fibonacci(15)." ";
-echo Fibonacci(16);
+echo Fibonacci(3)." ";
+echo Fibonacci(1);
 ?>                                                                                                    

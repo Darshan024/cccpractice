@@ -13,8 +13,8 @@ while($row=mysqli_fetch_assoc($result)){
     echo "<td>".$row['pname']."</td>";
     echo "<td>".$row['sku']."</td>";
     echo "<td>".$row['category']."</td>";
-    echo "<td> <a href='index.php?action=delete&id={$row['pname']}'>Delete</a></td>";
-    echo "<td> <a href='index.php?action=edit&id={$row['pname']}'>Update</a></td>";
+    echo "<td> <a href='product.php?action=delete&id={$row['pname']}'>Delete</a></td>";
+    echo "<td> <a href='product.php?action=edit&id={$row['pname']}'>Update</a></td>";
 }
 echo "</table>";
 ?>
