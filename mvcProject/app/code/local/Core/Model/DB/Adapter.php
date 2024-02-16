@@ -5,7 +5,7 @@ class Core_Model_DB_Adapter
         "host" => "localhost",
         "user" => "root",
         "password" => "",
-        "database" => "",
+        "database" => "ccc_practice",
     ];
     public $connect = null;
     public function connect()
@@ -33,7 +33,13 @@ class Core_Model_DB_Adapter
     }
     public function fetchRow($query)
     {
-
+        $row = [];
+        $this->connect();
+        $result=mysqli_query($this->connect, $query);
+        while ($_row = mysqli_fetch_assoc($result)) {
+            $row = $_row;
+        }
+        return $row;
     }
     public function insert($query)
     {
