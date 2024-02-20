@@ -1,0 +1,22 @@
+<div class="form" style="border:1px solid black; width:30vw; padding: 15px">
+    <h2>Product Form</h2>
+    <form method="POST" action="">
+        <div class="row">
+            <!-- <label for="sku">SKU : </label> -->
+            <input type="hidden" name="catalog_product[product_id]">
+        </div>
+
+        <div class="row">
+            <label for="name">Category name</label>
+            <input type="text" name="catalog_product[category_name]" id="name">
+        </div>
+
+        <div class="row">
+            <label for="status">Status : </label>
+            <input type="text" name="catalog_product[status]" id="status">
+        </div>
+        <div class="row">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
