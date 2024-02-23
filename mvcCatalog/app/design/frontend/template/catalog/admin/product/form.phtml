@@ -1,0 +1,104 @@
+<div class="form" style="border:1px solid black; width:30vw; padding: 15px">
+    <h2>Product Form</h2>
+    <form method="POST" action="<?php
+    $productModel = Mage::getModel('catalog/product');
+    $id = $this->getRequest()->getParams('id');
+    if ($id != '') {
+        $productModel->load($id);
+    }
+    if ($id == null) {
+        echo $this->getUrl('admin/catalog_product/save' . $id);
+    } else {
+        echo $this->getUrl('admin/catalog_product/save?id=' . $id);
+    }
+    ?>">
+        <div class="row">
+            <!-- <label for="sku">SKU : </label> -->
+            <input type="hidden" name="catalog_product[product_id]">
+        </div>
+        <div class="row">
+            <label for="sku">SKU : </label>
+            <input type="text" name="catalog_product[sku]" id="sku"
+                value="<?php echo ($this->getRequest()->getParams('id')) ? $productModel->getSku() : ''; ?>">
+        </div>
+        <div class="row">
+            <label for="name">Name : </label>
+            <input type="text" name="catalog_product[name]" id="name"
+                value="<?php echo ($this->getRequest()->getParams('id')) ? $productModel->getName() : ''; ?>">
+        </div>
+
+        <div class="row">
+            <label for="color">Color : </label>
+            <input type="text" name="catalog_product[color]" id="color"
+                value="<?php echo ($this->getRequest()->getParams('id')) ? $productModel->getColor() : ''; ?>">
+        </div>
+
+        <div class="row">
+            <label for="size">Size : </label>
+            <input type="text" name="catalog_product[size]" id="size"
+                value="<?php echo ($this->getRequest()->getParams('id')) ? $productModel->getSize() : ''; ?>">
+        </div>
+
+        <div class="row">
+            <label for="description">Description :
+                <textarea name="catalog_product[description]" id="description" cols="30" rows="10"></textarea>
+            </label>
+        </div>
+
+        <div class="row">
+            <label for="image_link">Image Link : </label>
+            <input type="file" name="catalog_product[image_link]" id="image_link">
+        </div>
+
+        <div class="row">
+            <label for="link">Link : </label>
+            <input type="file" name="catalog_product[link]" id="link">
+        </div>
+
+        <div class="row">
+            <label for="price">Price : </label>
+            <input type="number" name="catalog_product[price]" id="price"
+                value="<?php echo ($this->getRequest()->getParams('id')) ? $productModel->getPrice() : ''; ?>">
+        </div>
+
+        <div class="row">
+            <label for="mfr_cost">Manufacture Cost</label>
+            <input type="number" name="catalog_product[mfr_cost]" id="mfr_cost"
+                value="<?php echo ($this->getRequest()->getParams('id')) ? $productModel->getMfr_cost() : ''; ?>">
+        </div>
+
+        <div class="row">
+            <label for="shipping_cost">Shipping Cost</label>
+            <input type="number" name="catalog_product[shipping_cost]" id="shipping_cost"
+                value="<?php echo ($this->getRequest()->getParams('id')) ? $productModel->getShipping_cost() : ''; ?>">
+        </div>
+
+        <div class="row">
+            <label for="total_cost">Total Cost</label>
+            <input type="number" name="catalog_product[total_cost]" id="total_cost"
+                value="<?php echo ($this->getRequest()->getParams('id')) ? $productModel->getTotal_cost() : ''; ?>">
+        </div>
+
+        <div class="row">
+            <label for="margin_percentage">Margin Percentage : </label>
+            <input type="number" name="catalog_product[margin_percentage]" id="margin_percentage"
+                value="<?php echo ($this->getRequest()->getParams('id')) ? $productModel->getMargin_percentage() : ''; ?>">
+        </div>
+
+        <div class="row">
+            <label for="min_price">Min Price : </label>
+            <input type="number" name="catalog_product[min_price]" id="min_price"
+                value="<?php echo ($this->getRequest()->getParams('id')) ? $productModel->getMin_price() : ''; ?>">
+        </div>
+
+        <div class="row">
+            <label for="status">Status : </label>
+            <input type="text" name="catalog_product[status]" id="status"
+                value="<?php echo ($this->getRequest()->getParams('id')) ? $productModel->getStatus() : ''; ?>">
+        </div>
+
+        <div class="row">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
