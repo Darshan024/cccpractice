@@ -14,7 +14,7 @@ class Page_Controller_Index extends Core_Controller_Front_Action
 
         // print_r($layout->getChild('head'));
         $layout->toHtml();
-        // echo dirname(__FILE__);
+
     }
 }
 ?>

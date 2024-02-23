@@ -4,25 +4,26 @@
     $id = Mage::getModel('core/request')->getQueryData('id');
     ?>
     <form method="POST" action="<?php
+    $productModel = Mage::getModel('catalog/product');
     if ($id == null) {
-        echo $this->getUrl('admin/catalog_category/save' . $id);
+        echo $this->getUrl('admin/catalog_category/save');
     } else {
         echo $this->getUrl('admin/catalog_category/save?id=' . $id);
     }
     ?>
     ">
         <div class="row">
-            <input type="hidden" name="catalog_product[product_id]">
+            <input type="hidden" name="catalog_product[product_id]" >
         </div>
 
         <div class="row">
             <label for="name">Category name</label>
-            <input type="text" name="catalog_product[category_name]" id="name">
+            <input type="text" name="catalog_product[category_name]" id="name" value="<?php echo ($this->getRequest()->getParams('id')) ? $productModel->getCategory_name() : ''; ?>">
         </div>
 
         <div class="row">
             <label for="status">Status : </label>
-            <input type="text" name="catalog_product[status]" id="status">
+            <input type="text" name="catalog_product[status]" id="status" value="<?php echo ($this->getRequest()->getParams('id')) ? $productModel->getStatus() : ''; ?>">
         </div>
         <div class="row">
             <input type="submit" value="Submit">

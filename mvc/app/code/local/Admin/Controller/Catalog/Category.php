@@ -7,7 +7,7 @@ class Admin_Controller_Catalog_Category extends Core_Controller_Front_Action
         $layout = $this->getLayout();
         $child = $layout->getChild('content');
         $layout->getChild('head')->addCss('product/form.css');
-        $categoryForm = $layout->createBlock('catalog/admin_Category');
+        $categoryForm = $layout->createBlock('catalog/admin_Category_form');
         $child->addChild('form', $categoryForm);
         $layout->toHtml();
     }
@@ -19,5 +19,12 @@ class Admin_Controller_Catalog_Category extends Core_Controller_Front_Action
         $_product = Mage::getModel('catalog/category')
             ->setData($data)
             ->save($id);
+    }
+    public function deleteAction()
+    {
+        $id = $this->getRequest()->getParams('id');
+        $_product = Mage::getModel('catalog/product')
+            ->setId($id)
+            ->delete();
     }
 }

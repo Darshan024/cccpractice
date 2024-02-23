@@ -1,7 +1,6 @@
 <?php
 class Core_Model_Resource_Abstract
 {
-
     protected $_tableName = "";
     protected $_primaryKey = "";
     public function getTableName()
@@ -24,25 +23,21 @@ class Core_Model_Resource_Abstract
     {
         return $this->_primaryKey;
     }
-    public function save(Core_Model_Abstract $product)
+    public function save(Core_Model_Abstract $abstract)
     {
-        $data = $product->getData();
-        if (isset($data[$this->_primaryKey])) {
-            unset($data[$this->_primaryKey]);
+        $data = $abstract->getData();
+        if (isset($data[$this->getPrimaryKey()]) && !empty($data[$this->getPrimaryKey()])) {
+            $sql = $this->updateSql($this->getTableName(), $data, [$this->getPrimaryKey() => $abstract->getId()]);
+            $this->getAdapter()->update($sql);
+        } else {
+            $sql = $this->insertSql($this->getTableName(), $data);
+            $id = $this->getAdapter()->insert($sql);
+            $abstract->setId($id);
         }
-        $query = $this->insertSql($this->getTableName(), $data);
-        $id = $this->getAdapter()->insert($query);
-        $product->setId($id);
     }
-    public function update(Core_Model_Abstract $product, $id)
+    public function delete(Core_Model_Abstract $abstract)
     {
-        $data = $product->getData();
-        $query = $this->updateSql($this->getTableName(), $data, ['product_id' => $id]);
-        $this->getAdapter()->update($query);
-    }
-    public function delete(Core_Model_Abstract $product, $id)
-    {
-        $query = $this->deleteSql($this->getTableName(), ['product_id' => $id]);
+        $query = $this->deleteSql($this->getTableName(), ['product_id' => $abstract->getId()]);
         $this->getAdapter()->delete($query);
     }
     public function insertSql($table_name, $data)
