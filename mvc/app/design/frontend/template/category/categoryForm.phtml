@@ -1,8 +1,17 @@
 <div class="form" style="border:1px solid black; width:30vw; padding: 15px">
     <h2>Product Form</h2>
-    <form method="POST" action="">
+    <?php
+    $id = Mage::getModel('core/request')->getQueryData('id');
+    ?>
+    <form method="POST" action="<?php
+    if ($id == null) {
+        echo $this->getUrl('admin/catalog_category/save' . $id);
+    } else {
+        echo $this->getUrl('admin/catalog_category/save?id=' . $id);
+    }
+    ?>
+    ">
         <div class="row">
-            <!-- <label for="sku">SKU : </label> -->
             <input type="hidden" name="catalog_product[product_id]">
         </div>
 

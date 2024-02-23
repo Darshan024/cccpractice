@@ -8,7 +8,6 @@ class Catalog_Controller_Category extends Core_Controller_Front_Action
         $child = $layout->getChild('content');
         $categoryForm = $layout->createBlock('catalog/admin_Category');
         $child->addChild('form', $categoryForm);
-        // $layout->check();
         $layout->toHtml();
     }
 }

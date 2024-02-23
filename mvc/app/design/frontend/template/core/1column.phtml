@@ -2,9 +2,6 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <?php echo $this->getChildHtml('head') ?>
 </head>
 
@@ -18,10 +15,10 @@
     <div>
         <?php echo $this->getChildHtml('footer') ?>
     </div>
-    
-    <div>
+
+    <!-- <div>
         <?php echo $this->getChildHtml('messages') ?>
-    </div>
+    </div> -->
 
     <?php echo $this->getRequest()->getParams('pid'); ?>
     <?php echo $this->getRequest()->getParams('name'); ?>

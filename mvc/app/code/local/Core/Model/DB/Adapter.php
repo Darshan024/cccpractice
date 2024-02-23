@@ -36,7 +36,7 @@ class Core_Model_DB_Adapter
     {
         $row = [];
         $this->connect();
-        $result=mysqli_query($this->connect, $query);
+        $result = mysqli_query($this->connect, $query);
         while ($_row = mysqli_fetch_assoc($result)) {
             $row = $_row;
         }
@@ -45,21 +45,30 @@ class Core_Model_DB_Adapter
     public function insert($query)
     {
         $this->connect();
-        if(mysqli_query($this->connect(), $query)){
+        if (mysqli_query($this->connect(), $query)) {
             return mysqli_insert_id($this->connect());
-        }
-        else{
+        } else {
             echo False;
         }
 
     }
     public function update($query)
     {
-
+        $this->connect();
+        if (mysqli_query($this->connect(), $query)) {
+            echo "updated";
+        } else {
+            echo "not updated";
+        }
     }
     public function delete($query)
     {
-
+        $this->connect();
+        if (mysqli_query($this->connect(), $query)) {
+            echo "deleted";
+        } else {
+            echo "not deleted";
+        }
     }
     public function query($query)
     {
