@@ -6,7 +6,8 @@ $ProductModel = $this->getProduct();
     <form method="POST" action="<?php echo $this->getUrl('admin/catalog_product/save') ?>">
         <div class="row">
             <!-- <label for="sku">SKU : </label> -->
-            <input type="hidden" name="catalog_product[product_id]" value="<?php echo $ProductModel->getProductId(); ?>">
+            <input type="hidden" name="catalog_product[product_id]"
+                value="<?php echo $ProductModel->getProductId(); ?>">
         </div>
         <div class="row">
             <label for="sku">SKU : </label>
@@ -14,68 +15,83 @@ $ProductModel = $this->getProduct();
         </div>
         <div class="row">
             <label for="name">Name : </label>
-            <input type="text" name="catalog_product[name]" id="name">
+            <input type="text" name="catalog_product[name]" id="name" value="<?php echo $ProductModel->getName(); ?>">
         </div>
 
         <div class="row">
             <label for="color">Color : </label>
-            <input type="text" name="catalog_product[color]" id="color">
+            <input type="text" name="catalog_product[color]" id="color"
+                value="<?php echo $ProductModel->getColor(); ?>">
         </div>
 
         <div class="row">
             <label for="size">Size : </label>
-            <input type="text" name="catalog_product[size]" id="size">
+            <input type="text" name="catalog_product[size]" id="size" value="<?php echo $ProductModel->getSize(); ?>">
         </div>
 
         <div class="row">
             <label for="description">Description :
-                <textarea name="catalog_product[description]" id="description" cols="30" rows="10"></textarea>
+                <textarea name="catalog_product[description]" id="description" cols="30"
+                    rows="10"><?php echo $ProductModel->getDescription() ?></textarea>
+                <value>
             </label>
         </div>
 
         <div class="row">
             <label for="image_link">Image Link : </label>
-            <input type="file" name="catalog_product[image_link]" id="image_link">
+            <input type="file" name="catalog_product[image_link]" id="image_link"
+                value="<?php echo $ProductModel->getImageLink(); ?>">
         </div>
 
         <div class="row">
             <label for="link">Link : </label>
-            <input type="file" name="catalog_product[link]" id="link">
+            <input type="file" name="catalog_product[link]" id="link" value="<?php echo $ProductModel->getLink(); ?>">
         </div>
-
+        <div class="row">
+            <label for="category">Category : </label>
+            <input type="text" value="<?php echo $ProductModel->getCategoryId() ?>" name="catalog_product[category_id]"
+                id="link">
+        </div>
         <div class="row">
             <label for="price">Price : </label>
-            <input type="number" name="catalog_product[price]" id="price">
+            <input type="number" name="catalog_product[price]" id="price"
+                value="<?php echo $ProductModel->getPrice(); ?>">
         </div>
 
         <div class="row">
             <label for="mfr_cost">Manufacture Cost</label>
-            <input type="number" name="catalog_product[mfr_cost]" id="mfr_cost">
+            <input type="number" name="catalog_product[mfr_cost]" id="mfr_cost"
+                value="<?php echo $ProductModel->getMfrCost(); ?>">
         </div>
 
         <div class="row">
             <label for="shipping_cost">Shipping Cost</label>
-            <input type="number" name="catalog_product[shipping_cost]" id="shipping_cost">
+            <input type="number" name="catalog_product[shipping_cost]" id="shipping_cost"
+                value="<?php echo $ProductModel->getShippingCost(); ?>">
         </div>
 
         <div class="row">
             <label for="total_cost">Total Cost</label>
-            <input type="number" name="catalog_product[total_cost]" id="total_cost">
+            <input type="number" name="catalog_product[total_cost]" id="total_cost"
+                value="<?php echo $ProductModel->getTotalCost(); ?>">
         </div>
 
         <div class="row">
             <label for="margin_percentage">Margin Percentage : </label>
-            <input type="number" name="catalog_product[margin_percentage]" id="margin_percentage">
+            <input type="number" name="catalog_product[margin_percentage]" id="margin_percentage"
+                value="<?php echo $ProductModel->getMarginPercentage(); ?>">
         </div>
 
         <div class="row">
             <label for="min_price">Min Price : </label>
-            <input type="number" name="catalog_product[min_price]" id="min_price">
+            <input type="number" name="catalog_product[min_price]" id="min_price"
+                value="<?php echo $ProductModel->getMinPrice(); ?>">
         </div>
 
         <div class="row">
             <label for="status">Status : </label>
-            <input type="text" name="catalog_product[status]" id="status">
+            <input type="text" name="catalog_product[status]" id="status"
+                value="<?php echo $ProductModel->getStatus(); ?>">
         </div>
 
         <div class="row">

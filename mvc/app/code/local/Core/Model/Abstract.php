@@ -37,7 +37,10 @@ class Core_Model_Abstract
     }
     public function getCollection()
     {
-
+        $collection = new $this->_collectionClass();
+        $collection->setResource($this->getResource());
+        $collection->select();
+        return $collection;
     }
 
     public function getTableName()
@@ -71,7 +74,7 @@ class Core_Model_Abstract
     }
     public function getData($key = null)
     {
-        
+
         return $this->_data;
     }
 

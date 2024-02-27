@@ -1,0 +1,30 @@
+<?php
+$categoryModel = $this->getCategory();
+?>
+<div class="form" style="border:1px solid black; width:30vw; padding: 15px">
+    <h2>Category Form</h2>
+    <?php
+    $id = Mage::getModel('core/request')->getQueryData('id');
+    ?>
+    <form method="POST" action="<?php echo $this->getUrl('admin/catalog_category/save'); ?>">
+        <div class="row">
+            <input type="hidden" name="catalog_product[category_id]"
+                value="<?php echo $categoryModel->getCategoryId(); ?>">
+        </div>
+
+        <div class="row">
+            <label for="name">Category name</label>
+            <input type="text" name="catalog_product[category_name]" id="name"
+                value="<?php echo $categoryModel->getCategoryName(); ?>">
+        </div>
+
+        <div class="row">
+            <label for="status">Status : </label>
+            <input type="text" name="catalog_product[status]" id="status"
+                value="<?php echo $categoryModel->getStatus(); ?>">
+        </div>
+        <div class="row">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>

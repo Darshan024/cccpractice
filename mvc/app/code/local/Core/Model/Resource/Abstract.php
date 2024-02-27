@@ -37,7 +37,7 @@ class Core_Model_Resource_Abstract
     }
     public function delete(Core_Model_Abstract $abstract)
     {
-        $query = $this->deleteSql($this->getTableName(), ['product_id' => $abstract->getId()]);
+        $query = $this->deleteSql($this->getTableName(), [$this->getPrimaryKey() => $abstract->getId()]);
         $this->getAdapter()->delete($query);
     }
     public function insertSql($table_name, $data)

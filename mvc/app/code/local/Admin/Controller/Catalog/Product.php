@@ -9,7 +9,7 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
         $layout->getChild('head')->addCss('product/form.css');
         $child = $layout->getChild('content');
         $productForm = $layout->createBlock('catalog/admin_product_form');
-        // ->setTemplate('product/productForm.phtml');
+        // ->setTemplate('catalog/admin/cayegory/form.phtml');
         $child->addChild('form', $productForm);
         $layout->toHtml();
     }
@@ -19,7 +19,6 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
         $_product = Mage::getModel('catalog/product')
             ->setData($data)
             ->save();
-        // print_r($_product);
     }
     public function deleteAction()
     {
@@ -27,5 +26,13 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
         $_product = Mage::getModel('catalog/product')
             ->load($id)
             ->delete();
+    }
+    public function listAction(){
+        $layout = $this->getLayout();
+        $child = $layout->getChild('content');
+
+        $productList = $layout->createBlock('catalog/admin_product_list');
+        $child->addChild('list', $productList);
+        $layout->toHtml();
     }
 }

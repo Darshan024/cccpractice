@@ -1,0 +1,94 @@
+<?php
+
+$productCollection = Mage::getModel("catalog/product")->getCollection();
+// $productCollection->addFieldToFilter('product_id', ['gte' => 1, 'lte' => 5, 'neq' => 2]);
+
+// $productCollection->addFieldToFilter('product_id', ['in' => [55]]);
+// $productCollection->addFieldToFilter('sku', []);
+// $productCollection->getData();
+?>
+<div class="table" style="margin-top:20px;">
+    <table border="1px solid black">
+        <tr>
+            <th>id</th>
+            <th>Sku</th>
+            <th>Name</th>
+            <th>Color</th>
+            <th>Size</th>
+            <th>Description</th>
+            <th>ImageLink</th>
+            <th>Link</th>
+            <th>Category ID</th>
+            <th>Price</th>
+            <th>Mfr Cost</th>
+            <th>Shipping Cost</th>
+            <th>Total Cost</th>
+            <th>Margin Percentage</th>
+            <th>Min Price</th>
+            <th>Status</th>
+        </tr>
+        <?php
+        foreach ($productCollection->getData() as $product) { ?>
+            <tr>
+                <td>
+                    <?php print_r($product->getProductId());
+                    ?>
+                </td>
+                <td>
+                    <?php print_r($product->getSku()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getName()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getColor()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getSize()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getDescription()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getImageLink()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getLink()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getCategoryId()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getPrice()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getMfrCost()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getShippingCost()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getTotalCost()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getMarginPercentage()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getMinPrice()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getMappedStatus()); ?>
+                </td>
+                <td>
+                    <a
+                        href="http://localhost/Practice/mvc/admin/catalog_product/form?id=<?php echo $product->getProductId(); ?>">Edit</a>
+                </td>
+                <td>
+                    <a
+                        href="http://localhost/Practice/mvc/admin/catalog_product/delete?id=<?php echo $product->getProductId(); ?>">Delete</a>
+                </td>
+            </tr>
+
+        <?php } ?>
+    </table>
+</div>

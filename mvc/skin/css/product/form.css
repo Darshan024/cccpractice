@@ -1,68 +1,55 @@
 .form {
-    background-color: #f2f2f2;
-    /* Light gray background */
-    border: 1px solid #dd7070;
-    /* Gray border */
-    padding: 20px;
-    /* Padding around the form elements */
-    margin: 0 auto;
-    /* Center the form horizontally */
-    width: 400px;
-    /* Set a fixed width for the form */
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 25px;
+    width: 450px;
+    margin: 50px auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.form h2 {
+    text-align: center;
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 25px;
 }
 
 .row {
-    margin-bottom: 15px;
-    /* Space between form elements */
+    margin-bottom: 18px;
 }
 
 .row label {
     display: block;
-    /* Labels on top of each row */
     font-weight: bold;
-    /* Make labels stand out */
-    margin-bottom: 5px;
-    /* Space between label and input */
+    margin-bottom: 8px;
 }
 
 .row input[type="text"],
 .row input[type="number"],
-.row textarea {
-    width: 100%;
-    /* Make input fields fill the available space */
-    padding: 5px;
-    /* Padding for better user experience */
-    border: 1px solid #ccc;
-    /* Gray border for inputs */
-    border-radius: 3px;
-    /* Rounded corners for a softer look */
+.row textarea,
+.row input[type="file"],
+.row input[type="submit"] {
+    width: 80%;
+    padding: 12px 18px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: all 0.2s ease-in-out;
 }
 
 .row textarea {
     height: 80px;
-    /* Adjust textarea height as needed */
-}
-
-.row input[type="file"] {
-    /* Style file input fields differently if needed */
 }
 
 .row input[type="submit"] {
     background-color: #4CAF50;
-    /* Green submit button */
     color: white;
-    /* White text */
     border: none;
-    /* Remove default button border */
-    padding: 10px 20px;
-    /* Padding for the button */
-    font-size: 16px;
-    /* Larger font size for the button */
+    padding: 15px 30px;
+    font-size: 18px;
     cursor: pointer;
-    /* Indicate clickable button */
+    transition: all 0.2s ease-in-out;
 }
 
 .row input[type="submit"]:hover {
     background-color: #3e8e41;
-    /* Darker green on hover */
 }

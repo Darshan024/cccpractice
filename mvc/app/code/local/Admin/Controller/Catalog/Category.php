@@ -23,8 +23,16 @@ class Admin_Controller_Catalog_Category extends Core_Controller_Front_Action
     public function deleteAction()
     {
         $id = $this->getRequest()->getParams('id');
-        $_product = Mage::getModel('catalog/product')
-            ->setId($id)
+        $_product = Mage::getModel('catalog/category')
+            ->load($id)
             ->delete();
+    }
+    public function listAction()
+    {
+        $layout = $this->getLayout();
+        $child = $layout->getChild('content');
+        $productList = $layout->createBlock('catalog/admin_category_list');
+        $child->addChild('list', $productList);
+        $layout->toHtml();
     }
 }
