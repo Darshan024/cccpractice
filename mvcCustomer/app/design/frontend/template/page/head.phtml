@@ -1,0 +1,19 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<?php
+// echo get_class($this);
+$jsslink = $this->getJs();
+$csslink = $this->getCss();
+?>
+<?php if (count($csslink)): ?>
+    <?php foreach ($csslink as $_css): ?>
+        <link rel="stylesheet" type="text/css" href="<?php echo Mage::getBaseUrl('skin/css/') . $_css; ?>">
+    <?php endforeach; ?>
+<?php endif; ?>
+
+<?php if (count($jsslink)): ?>
+    <?php foreach ($jsslink as $_js): ?>
+        <script src="<?php echo Mage::getBaseUrl('skin/js/') . $_js; ?>"></script>
+    <?php endforeach; ?>
+<?php endif; ?>

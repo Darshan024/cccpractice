@@ -1,0 +1,44 @@
+.logo {
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+}
+
+.header {
+    background-color: #333;
+    /* Dark background */
+    color: #fff;
+    /* White text */
+    padding: 10px 20px;
+    /* Padding around the links */
+}
+
+.header ul {
+    list-style: none;
+    /* Remove default bullet points */
+    margin: 0;
+    /* Remove default margin */
+    padding: 0;
+    /* Remove default padding */
+}
+
+.header li {
+    display: inline-block;
+    /* Display links horizontally */
+    margin: 0 10px;
+    /* Space between links */
+}
+
+.header li a {
+    color: inherit;
+    /* Inherit text color from parent */
+    text-decoration: none;
+    /* Remove underline */
+    padding: 10px 15px;
+    /* Padding for each link */
+}
+
+.header li a:hover {
+    background-color: #444;
+    /* Change background color on hover */
+}

@@ -1,0 +1,16 @@
+<div class="form" style="border:1px solid black; width:30vw; padding: 15px">
+    <h2>Login Form</h2>
+    <form method="POST" action="<?php echo $this->getUrl('customer/account/login') ?>">
+        <div class="row">
+            <label for="customer_email">Customer Email : </label>
+            <input type="text" name="login[customer_email]" id="customer_email">
+        </div>
+        <div class="row">
+            <label for="password">Enter Password : </label>
+            <input type="text" name="login[password]" id="password">
+        </div>
+        <div class="row">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>

@@ -1,0 +1,81 @@
+<div class="form" style="border:1px solid black; width:30vw; padding: 15px">
+    <h2>Customer Form</h2>
+    <form method="POST" action="<?php echo $this->getUrl('customer/account/save') ?>">
+        <div class="row">
+            <input type="hidden" name="catalog_product[customer_id]">
+        </div>
+        <div class="row">
+            <label for="customer_email">Customer Email : </label>
+            <input type="text" name="catalog_product[customer_email]" id="customer_email">
+        </div>
+        <div class="row">
+            <label for="first_name">First Name : </label>
+            <input type="text" name="catalog_product[first_name]" id="first_name">
+        </div>
+
+        <div class="row">
+            <label for="last_name">Last Name : </label>
+            <input type="text" name="catalog_product[last_name]" id="last_name">
+        </div>
+
+        <div class="row">
+            <label for="billing_address">Billing Address : </label>
+            <input type="text" name="catalog_product[billing_address]" id="billing_address">
+        </div>
+
+        <div class="row">
+            <label for="billing_city">Billing City : </label>
+            <input type="text" name="catalog_product[billing_city]" id="billing_city">
+        </div>
+
+        <div class="row">
+            <label for="billing_region">Billing Region </label>
+            <input type="number" name="catalog_product[billing_region]" id="billing_region">
+        </div>
+        <div class="row">
+            <label for="billing_country">Billing Country : </label>
+            <input type="number" name="catalog_product[billing_country]" id="billing_country">
+        </div>
+        <div class="row">
+            <label for="billing_phone">Billing Phone : </label>
+            <input type="text" name="catalog_product[billing_phone]" id="billing_phone">
+        </div>
+
+        <div class="row">
+            <label for="shipping_address">Shipping address</label>
+            <input type="text" name="catalog_product[shipping_address]" id="shipping_address">
+        </div>
+
+        <div class="row">
+            <label for="shipping_city">Shipping City</label>
+            <input type="text" name="catalog_product[shipping_city]" id="shipping_city">
+        </div>
+
+        <div class="row">
+            <label for="shipping_region">Shipping Region</label>
+            <input type="number" name="catalog_product[shipping_region]" id="shipping_region">
+        </div>
+
+        <div class="row">
+            <label for="shipping_country">Shipping Country : </label>
+            <input type="number" name="catalog_product[shipping_country]" id="shipping_country">
+        </div>
+
+        <div class="row">
+            <label for="shipping_phone">Shipping Phone : </label>
+            <input type="text" name="catalog_product[shipping_phone]" id="shipping_phone">
+        </div>
+
+        <div class="row">
+            <label for="status">Default : </label>
+            <input type="number" name="catalog_product[default]" id="default">
+        </div>
+        <div class="row">
+            <label for="password">Password </label>
+            <input type="text" name="catalog_product[password]" id="password">
+        </div>
+        <div class="row">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
