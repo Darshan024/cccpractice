@@ -1,6 +1,18 @@
 <?php
 class Customer_Controller_Account extends Core_Controller_Front_Action
 {
+    protected $_allowedAction = ['register', 'login'];
+    public function init()
+    {
+        // $this->getRequest()->getActionName();
+        if (
+            !in_array($this->getRequest()->getActionName(), $this->_allowedAction) &&
+                !Mage::getSingleton('core/session')->get('customer_id'))
+        {
+
+            $this->setRedirect('customer/account/login');
+        }
+    }
     public function registerAction()
     {
         $layout = $this->getLayout();
@@ -12,7 +24,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
     }
     public function saveAction()
     {
-        $data = $this->getRequest()->getParams('catalog_product');
+        $data = $this->getRequest()->getParams('customer');
         $email = $data['customer_email'];
         $count = 0;
         $registerData = Mage::getModel('customer/customer')->getCollection()
@@ -55,10 +67,11 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             }
             if ($count == 1) {
                 Mage::getSingleton('core/session')->set('customer_id', $customerId);
-                $dashboard = Mage::getBaseUrl('customer/account/dashboard');
-                header("location:$dashboard");
+                // $dashboard = Mage::getBaseUrl('customer/account/dashboard');
+                // header("location:$dashboard");
+                $this->setRedirect('customer/account/dashboard');
             } else {
-                echo "Wrong password";
+                $this->setRedirect('customer/account/login');
             }
             // $cusotmer = Mage::getModel('customer/customer')
             //     ->setData($data)

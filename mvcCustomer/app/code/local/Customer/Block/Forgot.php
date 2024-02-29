@@ -4,6 +4,5 @@ class Customer_Block_Forgot extends Core_Block_Template{
     {
         $this->setTemplate('customer/forgotform.phtml');
     }
-
 }
 ?>

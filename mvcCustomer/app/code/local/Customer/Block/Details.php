@@ -10,7 +10,7 @@ class Customer_Block_Details extends Core_Block_Template
     {
         $this->_customerId = $customerId;
     }
-    public function getCusomerDetails()
+    public function getCustomerDetails()
     {
         if (!$this->_customerId) {
             return null;

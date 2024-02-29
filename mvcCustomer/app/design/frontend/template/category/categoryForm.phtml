@@ -3,14 +3,7 @@
     <?php
     $id = Mage::getModel('core/request')->getQueryData('id');
     ?>
-    <form method="POST" action="<?php
-    $productModel = Mage::getModel('catalog/product');
-    if ($id == null) {
-        echo $this->getUrl('admin/catalog_category/save');
-    } else {
-        echo $this->getUrl('admin/catalog_category/save?id=' . $id);
-    }
-    ?>
+    <form method="POST" action="<?php echo $this->getUrl('admin/catalog_category/save');?>
     ">
         <div class="row">
             <input type="hidden" name="catalog_product[product_id]" >
