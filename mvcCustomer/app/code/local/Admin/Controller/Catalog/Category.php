@@ -13,12 +13,10 @@ class Admin_Controller_Catalog_Category extends Core_Controller_Front_Action
     }
     public function saveAction()
     {
-        $params = $this->getRequest()->getParams();
-        $id = isset($params['id']) ? $params['id'] : NULL;
         $data = $this->getRequest()->getParams('catalog_product');
-        $_category = Mage::getModel('catalog/category')
+        $_product = Mage::getModel('catalog/category')
             ->setData($data)
-            ->save($id);
+            ->save();
     }
     public function deleteAction()
     {

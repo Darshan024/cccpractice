@@ -41,6 +41,7 @@ class Core_Model_Abstract
     {
         $collection = new $this->_collectionClass();
         $collection->setResource($this->getResource());
+        $collection->setModelClass($this);
         $collection->select();
         return $collection;
     }
@@ -108,8 +109,8 @@ class Core_Model_Abstract
         $this->getResource()->delete($this);
         return $this;
     }
-    public function check(){
-        $this->getResource()->check($this); 
+    public function checkPassword(){
+        $this->getResource()->checkPassword($this); 
         return $this;
     }
 }

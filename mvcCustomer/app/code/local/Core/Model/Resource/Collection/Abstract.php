@@ -6,10 +6,19 @@ class Core_Model_Resource_Collection_Abstract
     protected $_select = [];
     protected $_data = [];
     protected $_isLoaded = false;
+    protected $_modelClass = "";
     public function setResource(Core_Model_Resource_Abstract $resource)
     {
         $this->_resource = $resource;
         return $this;
+    }
+    public function setModelClass($modelClass)
+    {
+        $this->_modelClass = $modelClass;
+    }
+    public function getModelClass()
+    {
+        return new $this->_modelClass;
     }
     public function select()
     {
@@ -68,12 +77,13 @@ class Core_Model_Resource_Collection_Abstract
                 }
             }
             $sql .= " WHERE " . implode(" AND ", $whereCondition);
+
             // print_r($whereCondition);
         }
         // echo $sql;
         $result = $this->_resource->getAdapter()->fetchAll($sql);
         foreach ($result as $row) {
-            $this->_data[] = Mage::getModel('catalog/category')->setData($row);
+            $this->_data[] = $this->getModelClass()->setData($row);
         }
         $this->_isLoaded = true;
         return $this;

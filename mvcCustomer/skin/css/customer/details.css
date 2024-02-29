@@ -1,0 +1,15 @@
+.customer-details-table {
+    border-collapse: collapse;
+    width: 50%;
+}
+
+.customer-details-table th,
+.customer-details-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.customer-details-table th {
+    background-color: #f2f2f2;
+}

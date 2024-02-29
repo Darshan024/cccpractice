@@ -1,0 +1,101 @@
+<?php
+$customer = $this->getCusomerDetails();
+?>
+<table class="customer-details-table" border=1px>
+    <tr>
+        <th>Customer Id</th>
+        <td>
+            <?php echo $customer->getCustomerId(); ?>
+        </td>
+    </tr>
+    <tr>
+        <th>Customer Email</th>
+        <td>
+            <?php echo $customer->getCustomerEmail(); ?>
+        </td>
+    </tr>
+    <tr>
+        <th>First Name</th>
+        <td>
+            <?php echo $customer->getFirstName(); ?>
+        </td>
+    </tr>
+    <tr>
+        <th>Last Name</th>
+        <td>
+            <?php echo $customer->getLastName(); ?>
+        </td>
+    </tr>
+    <tr>
+        <th>Billing Address</th>
+        <td>
+            <?php echo $customer->getBillingAddress(); ?>
+        </td>
+    </tr>
+    <tr>
+        <th>Billing City</th>
+        <td>
+            <?php echo $customer->getBillingCity(); ?>
+        </td>
+    </tr>
+    <tr>
+        <th>Billing Region</th>
+        <td>
+            <?php echo $customer->getBillingRegion(); ?>
+        </td>
+    </tr>
+    <tr>
+        <th>Billing Country</th>
+        <td>
+            <?php echo $customer->getBillingCountry(); ?>
+        </td>
+    </tr>
+    <tr>
+        <th>Billing Phone</th>
+        <td>
+            <?php echo $customer->getBillingPhone(); ?>
+        </td>
+    </tr>
+    <tr>
+        <th>Shipping Address</th>
+        <td>
+            <?php echo $customer->getShippingAddress(); ?>
+        </td>
+    </tr>
+    <tr>
+        <th>Shipping City</th>
+        <td>
+            <?php echo $customer->getShippingCity(); ?>
+        </td>
+    </tr>
+    <tr>
+        <th>Shipping Region</th>
+        <td>
+            <?php echo $customer->getShippingRegion(); ?>
+        </td>
+    </tr>
+    <tr>
+        <th>Shipping Country</th>
+        <td>
+            <?php echo $customer->getShippingCountry(); ?>
+        </td>
+    </tr>
+    <tr>
+        <th>Shipping Phone</th>
+        <td>
+            <?php echo $customer->getShippingPhone(); ?>
+        </td>
+    </tr>
+    <tr>
+        <th>Default</th>
+        <td>
+            <?php echo $customer->getDefault(); ?>
+        </td>
+    </tr>
+    <tr>
+        <th>Password</th>
+        <td>
+            <?php echo $customer->getPassword(); ?>
+        </td>
+    </tr>
+</table>

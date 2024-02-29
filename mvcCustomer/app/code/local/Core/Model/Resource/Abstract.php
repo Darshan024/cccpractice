@@ -13,10 +13,22 @@ class Core_Model_Resource_Abstract
         {$this->_primaryKey}={$id}";
         return $this->getAdapter()->fetchRow($sql);
     }
-    public function check(Core_Model_Abstract $abstract)
+    public function checkPassword(Core_Model_Abstract $abstract)
     {
         $data = $abstract->getData();
-        
+        $key = array_keys($data);
+        // print_r($data);
+        $password = $data["password"];
+        $email = $data["customer_email"];
+        $sql = $this->selectSql($this->getTableName(), ["{$key[1]}"]) . " WHERE `customer_email`='$email'";
+        $sqlForId = $this->selectSql($this->getTableName(), ['`customer_id`']) . " WHERE `customer_email`='$email'";
+        $result = $this->getAdapter()->fetchRow($sql);
+        if ($password == $result['password']) {
+            $id = $this->getAdapter()->fetchRow($sqlForId);
+            $abstract->setId($id);
+        } else {
+            echo "password is incorrect";
+        }
     }
 
     public function getAdapter()
@@ -77,11 +89,10 @@ class Core_Model_Resource_Abstract
         $data = implode(" AND ", $data);
         return "DELETE FROM {$table_name} WHERE ({$data})";
     }
-    public function select($table_name, $columns)
+    public function selectSql($table_name, $columns)
     {
         $columns = implode(",", $columns);
         return "SELECT {$columns} FROM {$table_name}";
     }
-    
 }
 ?>

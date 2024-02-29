@@ -57,43 +57,36 @@ $ProductModel = $this->getProduct();
             <input type="number" name="catalog_product[price]" id="price"
                 value="<?php echo $ProductModel->getPrice(); ?>">
         </div>
-
         <div class="row">
             <label for="mfr_cost">Manufacture Cost</label>
             <input type="number" name="catalog_product[mfr_cost]" id="mfr_cost"
                 value="<?php echo $ProductModel->getMfrCost(); ?>">
         </div>
-
         <div class="row">
             <label for="shipping_cost">Shipping Cost</label>
             <input type="number" name="catalog_product[shipping_cost]" id="shipping_cost"
                 value="<?php echo $ProductModel->getShippingCost(); ?>">
         </div>
-
         <div class="row">
             <label for="total_cost">Total Cost</label>
             <input type="number" name="catalog_product[total_cost]" id="total_cost"
                 value="<?php echo $ProductModel->getTotalCost(); ?>">
         </div>
-
         <div class="row">
             <label for="margin_percentage">Margin Percentage : </label>
             <input type="number" name="catalog_product[margin_percentage]" id="margin_percentage"
                 value="<?php echo $ProductModel->getMarginPercentage(); ?>">
         </div>
-
         <div class="row">
             <label for="min_price">Min Price : </label>
             <input type="number" name="catalog_product[min_price]" id="min_price"
                 value="<?php echo $ProductModel->getMinPrice(); ?>">
         </div>
-
         <div class="row">
             <label for="status">Status : </label>
             <input type="text" name="catalog_product[status]" id="status"
                 value="<?php echo $ProductModel->getStatus(); ?>">
         </div>
-
         <div class="row">
             <input type="submit" value="Submit">
         </div>

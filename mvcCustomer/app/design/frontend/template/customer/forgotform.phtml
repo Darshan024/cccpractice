@@ -1,0 +1,15 @@
+<?php
+
+?>
+<div class="form" style="border:1px solid black; width:30vw; padding: 15px">
+    <h2>Forgot Password</h2>
+    <form method="POST" action="<?php echo $this->getUrl('customer/account/forgotpassword') ?>">
+        <div class="row">
+            <label for="customer_email">Customer Email : </label>
+            <input type="text" name="forgot[customer_email]" id="customer_email">
+        </div>
+        <div class="row">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
