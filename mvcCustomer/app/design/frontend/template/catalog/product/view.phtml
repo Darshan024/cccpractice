@@ -1,0 +1,149 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body> -->
+
+<h2>Product details</h2>
+
+<?php
+$productaData = $this->getProductData();
+foreach ($productaData->getData() as $product) {
+    ?>
+
+    <table border="1px">
+
+        <tr>
+            <th>Product ID</th>
+            <td>
+                <?php echo $product->getProductId(); ?>
+            </td>
+        </tr>
+        <tr>
+            <th>SKU</th>
+            <td>
+                <?php echo $product->getSku(); ?>
+            </td>
+        </tr>
+        <tr>
+
+            <th>Name</th>
+            <td>
+                <?php echo $product->getName(); ?>
+            </td>
+        </tr>
+        <tr>
+            <th>Color</th>
+            <td>
+                <?php echo $product->getColor(); ?>
+            </td>
+        </tr>
+        <tr>
+            <th>Size</th>
+            <td>
+                <?php echo $product->getSize(); ?>
+            </td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>
+                <?php echo $product->getDescription(); ?>
+            </td>
+        </tr>
+        <tr>
+
+            <th>Image Link</th>
+            <td>
+                <?php echo $product->getImageLink(); ?>
+            </td>
+        </tr>
+        <tr>
+            <th>Link</th>
+            <td>
+                <?php echo $product->getLink(); ?>
+            </td>
+        </tr>
+        <tr>
+            <th>Category ID</th>
+            <td>
+                <?php echo $product->getCategoryId(); ?>
+            </td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td>
+                <?php echo $product->getPrice(); ?>
+            </td>
+        </tr>
+        <tr>
+            <th>Mfr Cost</th>
+            <td>
+                <?php echo $product->getMfrCost(); ?>
+            </td>
+        </tr>
+        <tr>
+            <th>Shipping Cost</th>
+            <td>
+                <?php echo $product->getShippingCost(); ?>
+            </td>
+        </tr>
+        <tr>
+            <th>Total Cost</th>
+            <td>
+                <?php echo $product->getTotalCost(); ?>
+            </td>
+        </tr>
+        <tr>
+            <th>Margin Percentage</th>
+            <td>
+                <?php echo $product->getMarginPercentage(); ?>
+            </td>
+        </tr>
+        <tr>
+            <th>Min Price</th>
+            <td>
+                <?php echo $product->getMinPrice(); ?>
+            </td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>
+                <?php echo $product->getStatus(); ?>
+            </td>
+        </tr>
+    <?php } ?>
+</table>
+<form method="post" action="<?php echo Mage::getBaseUrl('sales/quote/add') ?>">
+    <div class="row">
+        <input type="hidden" name="productData[product_id]" value="<?php echo $product->getProductId(); ?>">
+    </div>
+    <div class="row">
+        <label for="quantity">Enter Quantity</label>
+        <input type="text" name="productData[quantity]">
+    </div>
+    <div class="row">
+        <input type="submit" value="Add To Cart" name="submit">
+    </div>
+</form>
+</body>
+
+</html>

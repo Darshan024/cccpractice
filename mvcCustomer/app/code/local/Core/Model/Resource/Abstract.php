@@ -7,6 +7,11 @@ class Core_Model_Resource_Abstract
     {
         return $this->_tableName;
     }
+    public function init($tablename, $primaryKey)
+    {
+        $this->_tableName = $tablename;
+        $this->_primaryKey = $primaryKey;
+    }
     public function load($id, $column = null)
     {
         $sql = "SELECT * FROM {$this->_tableName} WHERE 

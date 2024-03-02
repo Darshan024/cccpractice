@@ -47,10 +47,17 @@ $ProductModel = $this->getProduct();
             <label for="link">Link : </label>
             <input type="file" name="catalog_product[link]" id="link" value="<?php echo $ProductModel->getLink(); ?>">
         </div>
+        <?php $cat = $this->getCategoryList(); ?>
         <div class="row">
-            <label for="category">Category : </label>
-            <input type="text" value="<?php echo $ProductModel->getCategoryId() ?>" name="catalog_product[category_id]"
-                id="link">
+            <label for="category_id">Category:</label>
+            <select name="product[category_id]">
+                <?php foreach ($cat->getData() as $category): ?>
+                    <option value="<?php echo $category->getCategoryId() ?>" <?php echo $category->getCategoryId() == $ProductModel->getCategoryId() ? 'selected' : ''; ?>>
+                        <?php echo $category->getCategoryName(); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+
         </div>
         <div class="row">
             <label for="price">Price : </label>
@@ -84,9 +91,11 @@ $ProductModel = $this->getProduct();
         </div>
         <div class="row">
             <label for="status">Status : </label>
-            <input type="text" name="catalog_product[status]" id="status"
-                value="<?php echo $ProductModel->getStatus(); ?>">
-        </div>
+            <select id="status" name="catalog_product[status]">
+                <option value="1" <?php echo $ProductModel->getStatus() == 1 ? 'selected' : '' ?>>Enabled</option>
+                <option value="0" <?php echo $ProductModel->getStatus() == 0 ? 'selected' : '' ?>>Disabled</option>
+            </select>
+        </div>
         <div class="row">
             <input type="submit" value="Submit">
         </div>

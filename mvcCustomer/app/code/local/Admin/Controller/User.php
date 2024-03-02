@@ -7,6 +7,9 @@ class Admin_Controller_User extends Core_Controller_Admin_Action
         if (!$this->getRequest()->isPost()) {
             $layout = $this->getLayout();
             $layout->getChild('head')->addCss('product/form.css');
+            // $layout->removeChild('header');
+            // $header=$layout->createBlock('core/template')->setTemplate('admin/header.phtml');
+            // $layout->addChild('adminheder',$header);
             $child = $layout->getChild("content");
             $loginForm = $layout->createBlock("admin/login");
             $child->addChild('form', $loginForm);

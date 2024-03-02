@@ -1,0 +1,38 @@
+<?php
+$bannerModel = $this->getBanner();
+?>
+<div class="form" style="border:1px solid black; width:30vw; padding: 15px">
+    <h2>Image Upload Form</h2>
+    <form action="<?php echo Mage::getBaseUrl('admin/banner/save') ?>" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <input type="hidden" name="banner[banner_id]" value="<?php echo $bannerModel->getBannerId(); ?>">
+        </div>
+        <div class="row">
+            <label for="image">Select Banner Image:</label>
+            <input type="file" name="banner_image" id="image" accept="image/*"
+                value="<?php echo $bannerModel->getBannerImage(); ?>">
+        </div>
+        <div class="row">
+            <label for="sku">Status : </label>
+            <input type="text" name="banner[status]" id="staus" value="<?php echo $bannerModel->getStatus(); ?>">
+        </div>
+        <div class="row">
+            <label for="status">Show On : </label>
+            <select id="status" name="banner[show_on]">
+                <option value="Home Page" <?php echo $bannerModel->getShowOn() == 'Home Page' ? 'selected' : '' ?>>Home
+                    Page
+                </option>
+                <option value="Cart Page" <?php echo $bannerModel->getShowOn() == 'Cart Page' ? 'selected' : '' ?>>Cart
+                    Page
+                </option>
+                <option value="Sale Page" <?php echo $bannerModel->getShowOn() == 'Sale Page' ? 'selected' : '' ?>>Sales
+                    Page
+                </option>
+            </select>
+
+        </div>
+        <div class="row">
+            <input type="submit" value="Submit" name="submit">
+        </div>
+    </form>
+</div>

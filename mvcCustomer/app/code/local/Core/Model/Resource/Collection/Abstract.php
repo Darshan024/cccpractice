@@ -16,10 +16,6 @@ class Core_Model_Resource_Collection_Abstract
     {
         $this->_modelClass = $modelClass;
     }
-    public function getModelClass()
-    {
-        return new $this->_modelClass;
-    }
     public function select()
     {
         $this->_select['FROM'] = $this->_resource->getTableName();
@@ -83,7 +79,7 @@ class Core_Model_Resource_Collection_Abstract
         // echo $sql;
         $result = $this->_resource->getAdapter()->fetchAll($sql);
         foreach ($result as $row) {
-            $this->_data[] = $this->getModelClass()->setData($row);
+            $this->_data[] = Mage::getModel($this->_modelClass)->setData($row);
         }
         $this->_isLoaded = true;
         return $this;

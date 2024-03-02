@@ -1,0 +1,37 @@
+<div class="table" style="margin-top:20px;">
+    <table border="1px solid black">
+        <tr>
+            <th>Banner Id </th>
+            <th>Banner Image</th>
+            <th>Banner Status</th>
+            <th>Show On</th>
+        </tr>
+        <?php
+        $banner = Mage::getModel('banner/banner')->getCollection();
+        foreach ($banner->getData() as $bannerItem) { ?>
+            <tr>
+                <td>
+                    <?php print_r($bannerItem->getBannerId());
+                    ?>
+                </td>
+                <td>
+                    <?php $image = $bannerItem->getBannerImage(); ?>
+                    <img src="<?php echo Mage::getBaseUrl("media/banner/$image") ?>" style="width:200px;">
+                </td>
+                <td>
+                    <?php print_r($bannerItem->getStatus()); ?>
+                </td>
+                <td>
+                    <?php print_r($bannerItem->getShowOn()); ?>
+                </td>
+                <td>
+                    <a href="<?php echo Mage::getBaseUrl('admin/banner/form?id=' . $bannerItem->getBannerId()) ?>">Edit</a>
+                </td>
+                <td>
+                    <a
+                        href="<?php echo Mage::getBaseUrl("admin/banner/delete?id=" . $bannerItem->getBannerId()) ?>">Delete</a>
+                </td>
+            </tr>
+        <?php } ?>
+    </table>
+</div>

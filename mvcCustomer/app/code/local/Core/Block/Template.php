@@ -14,7 +14,9 @@ class Core_Block_Template extends Core_Block_Abstract
     }
     public function removeChild($key)
     {
-        
+        if (isset($this->_child[$key])) {
+            unset($this->_child[$key]);
+        }
     }
     public function getChild($key)
     {

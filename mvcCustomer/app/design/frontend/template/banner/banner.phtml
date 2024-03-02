@@ -1,0 +1,8 @@
+<?php
+$banner = Mage::getModel('banner/banner')->getCollection();
+foreach ($banner->getData() as $bannerItem) {
+    $image = $bannerItem->getBannerImage(); ?>
+<?php
+}
+?>
+<img src="<?php echo Mage::getBaseUrl("media/banner/$image") ?>" style="width:100%;">
