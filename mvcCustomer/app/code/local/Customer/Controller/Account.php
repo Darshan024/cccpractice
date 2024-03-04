@@ -1,7 +1,7 @@
 <?php
 class Customer_Controller_Account extends Core_Controller_Front_Action
 {
-    protected $_allowedAction = ['register', 'login'];
+    protected $_allowedAction = ['register', 'login', 'forgotpassword'];
     public function init()
     {
         $this->getRequest()->getActionName();
@@ -9,7 +9,6 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             !in_array($this->getRequest()->getActionName(), $this->_allowedAction) &&
             !Mage::getSingleton('core/session')->get('customer_id')
         ) {
-
             $this->setRedirect('customer/account/login');
         }
     }
@@ -33,14 +32,13 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             $count++;
         }
         if ($count > 0) {
-            echo "email already exist";
+            echo "email already registred";
             exit;
         }
         $customer = Mage::getModel('customer/customer')
             ->setData($data)
             ->save();
         $this->setRedirect('customer/account/login');
-
     }
     public function loginAction()
     {
@@ -52,7 +50,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             $child->addChild('form', $loginForm);
             $layout->toHtml();
         }
-        if ($this->getRequest()->isPost()) {
+        elseif($this->getRequest()->isPost()) {
             $data = $this->getRequest()->getParams('login');
             $email = $data['customer_email'];
             $password = $data['password'];
@@ -67,7 +65,6 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             }
             if ($count == 1) {
                 Mage::getSingleton('core/session')->set('customer_id', $customerId);
-                
                 $this->setRedirect('customer/account/dashboard');
             } else {
                 $this->setRedirect('customer/account/login');
@@ -85,7 +82,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
         $layout->getChild('head')->addCss('customer/details.css');
         $child = $layout->getChild("content");
         $dashboard = $layout->createBlock("customer/details");
-        $child->addChild('dashboard', $dashboard);
+        $child->addChild('dashboard',$dashboard);
         $dashboard->setCustomerId($customerId);
         $layout->toHtml();
     }
@@ -99,7 +96,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             $child->addChild('forgot', $forgotForm);
             $layout->toHtml();
         }
-        if ($this->getRequest()->isPost()) {
+        elseif($this->getRequest()->isPost()) {
             $data = $this->getRequest()->getParams('forgot');
             $email = $data['customer_email'];
             $customerCollection = Mage::getModel('customer/customer')->getCollection()
@@ -107,8 +104,11 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             foreach ($customerCollection->getData() as $customer) {
                 $customerPassword = $customer->getPassword();
             }
-            echo "user password is : " . $customerPassword;
-
+            if (isset($customerPassword)) {
+                echo "user password is : " . $customerPassword;
+            } else {
+                echo "email not registred";
+            }
         }
     }
 }

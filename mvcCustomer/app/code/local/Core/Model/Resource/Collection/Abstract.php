@@ -6,7 +6,7 @@ class Core_Model_Resource_Collection_Abstract
     protected $_select = [];
     protected $_data = [];
     protected $_isLoaded = false;
-    protected $_modelClass = "";
+    protected $_modelClass = null;
     public function setResource(Core_Model_Resource_Abstract $resource)
     {
         $this->_resource = $resource;

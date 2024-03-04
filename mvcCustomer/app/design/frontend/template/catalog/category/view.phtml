@@ -1,7 +1,85 @@
-<pre>
 <?php
 $productData = $this->getProductData();
-foreach ($productData->getData() as $product) {
-    print_r($product);
-}
 ?>
+<div class="table" style="margin-top:20px;">
+    <table border="1px solid black">
+        <tr>
+            <th>id</th>
+            <th>Sku</th>
+            <th>Name</th>
+            <th>Color</th>
+            <th>Size</th>
+            <th>Description</th>
+            <th>ImageLink</th>
+            <th>Link</th>
+            <th>Category ID</th>
+            <th>Price</th>
+            <th>Mfr Cost</th>
+            <th>Shipping Cost</th>
+            <th>Total Cost</th>
+            <th>Margin Percentage</th>
+            <th>Min Price</th>
+            <th>Status</th>
+        </tr>
+        <?php
+        foreach ($productData->getData() as $product) { ?>
+            <tr>
+                <td>
+                    <?php print_r($product->getProductId());
+                    ?>
+                </td>
+                <td>
+                    <?php print_r($product->getSku()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getName()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getColor()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getSize()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getDescription()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getImageLink()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getLink()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getCategoryId()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getPrice()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getMfrCost()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getShippingCost()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getTotalCost()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getMarginPercentage()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getMinPrice()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getMappedStatus()); ?>
+                </td>
+                <td>
+                    <a
+                        href="http://localhost/Practice/mvcCustomer/catalog/product/view?id=<?php echo $product->getProductId(); ?>">View
+                        Product</a>
+                </td>
+            </tr>
+
+        <?php } ?>
+    </table>
+</div>

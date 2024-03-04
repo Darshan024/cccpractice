@@ -14,14 +14,14 @@ class Admin_Controller_Catalog_Category extends Core_Controller_Admin_Action
     public function saveAction()
     {
         $data = $this->getRequest()->getParams('catalog_product');
-        $_product = Mage::getModel('catalog/category')
+        $_category = Mage::getModel('catalog/category')
             ->setData($data)
             ->save();
     }
     public function deleteAction()
     {
         $id = $this->getRequest()->getParams('id');
-        $_product = Mage::getModel('catalog/category')
+        $_category = Mage::getModel('catalog/category')
             ->load($id)
             ->delete();
     }
@@ -29,8 +29,8 @@ class Admin_Controller_Catalog_Category extends Core_Controller_Admin_Action
     {
         $layout = $this->getLayout();
         $child = $layout->getChild('content');
-        $productList = $layout->createBlock('catalog/admin_category_list');
-        $child->addChild('list', $productList);
+        $categoryList = $layout->createBlock('catalog/admin_category_list');
+        $child->addChild('list', $categoryList);
         $layout->toHtml();
     }
 }

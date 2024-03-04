@@ -8,24 +8,32 @@ $bannerModel = $this->getBanner();
             <input type="hidden" name="banner[banner_id]" value="<?php echo $bannerModel->getBannerId(); ?>">
         </div>
         <div class="row">
+            <?php $image = $bannerModel->getBannerImage(); ?>
+            <img src="<?php echo Mage::getBaseUrl("media/banner/$image") ?>" style="width:200px;">
+        </div>
+        <div class="row">
             <label for="image">Select Banner Image:</label>
             <input type="file" name="banner_image" id="image" accept="image/*"
                 value="<?php echo $bannerModel->getBannerImage(); ?>">
         </div>
-        <div class="row">
+        <div class=" row">
             <label for="sku">Status : </label>
-            <input type="text" name="banner[status]" id="staus" value="<?php echo $bannerModel->getStatus(); ?>">
+            <select id="status" name="banner[status]">
+                <option value="1" <?php echo $bannerModel->getStatus() == 1 ? 'selected' : '' ?>>Enabled</option>
+                <option value="0" <?php echo $bannerModel->getStatus() == 0 ? 'selected' : '' ?>>Disabled</option>
+            </select>
         </div>
+
         <div class="row">
             <label for="status">Show On : </label>
             <select id="status" name="banner[show_on]">
-                <option value="Home Page" <?php echo $bannerModel->getShowOn() == 'Home Page' ? 'selected' : '' ?>>Home
+                <option value="HomePage" <?php echo $bannerModel->getShowOn() == 'HomePage' ? 'selected' : '' ?>>Home
                     Page
                 </option>
-                <option value="Cart Page" <?php echo $bannerModel->getShowOn() == 'Cart Page' ? 'selected' : '' ?>>Cart
+                <option value="CartPage" <?php echo $bannerModel->getShowOn() == 'CartPage' ? 'selected' : '' ?>>Cart
                     Page
                 </option>
-                <option value="Sale Page" <?php echo $bannerModel->getShowOn() == 'Sale Page' ? 'selected' : '' ?>>Sales
+                <option value="SalePage" <?php echo $bannerModel->getShowOn() == 'SalePage' ? 'selected' : '' ?>>Sales
                     Page
                 </option>
             </select>

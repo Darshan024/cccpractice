@@ -10,11 +10,7 @@ class Page_Controller_Index extends Core_Controller_Front_Action
             ->setTemplate('banner/banner.phtml');
         $layout->getChild('content')
             ->addChild('banner', $banner);
-
         $layout->toHtml();
-
     }
-
-
 }
 ?>
