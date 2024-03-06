@@ -1,10 +1,46 @@
+
 <?php
-$calcualtor = Mage::getModel('calculator/calculator')->getCollection()->setLimit(10);
-
-foreach ($calcualtor->getData() as $calcualtordata) {
-
-    echo '<br>' . $calcualtordata->getUserName() . " " . $calcualtordata->getFromNumber() . " ". $calcualtordata->getOperator() . " " . $calcualtordata->getToNumber() . " =" . $calcualtordata->getResult() . " "; ?>
-
-    <?php
-}
+$CalculatorData = $this->getCalculatorData();
 ?>
+<div class="table" style="margin-top:20px;">
+    <table border="1px solid black">
+        <tr>
+            <th>User Name</th>
+            <th>From</th>
+            <th>Operator</th>
+            <th>To Number</th>
+            <th>Result</th>
+        </tr>
+        <?php
+        foreach ($CalculatorData->getData() as $calcualtor) { ?>
+            <tr>
+                <td>
+                    <?php print_r($calcualtor->getUserName());
+                    ?>
+                </td>
+                <td>
+                    <?php print_r($calcualtor->getFromNumber()); ?>
+                </td>
+                <td>
+                    <?php print_r($calcualtor->getOperator()); ?>
+                </td>
+                <td>
+                    <?php print_r($calcualtor->getToNumber()); ?>
+                </td>
+                <td>
+                    <?php print_r($calcualtor->getResult()); ?>
+                </td>
+                <td>
+                <td>
+                    <a href="<?php echo Mage::getBaseUrl('admin/calculator/form?id=' . $calcualtor->getId()); ?>">Edit</a>
+                </td>
+                <td>
+                    <a
+                        href="<?php echo Mage::getBaseUrl('admin/calculator/delete?id=') . $calcualtor->getId(); ?>">Delete</a>
+                </td>
+
+            </tr>
+
+        <?php } ?>
+    </table>
+</div>

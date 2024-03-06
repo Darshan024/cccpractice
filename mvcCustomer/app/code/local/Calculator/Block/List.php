@@ -6,6 +6,8 @@ class Calculator_Block_List extends Core_Block_Template
     {
         $this->setTemplate('calculator/list.phtml');
     }
+    public function getCalculatorData(){
+        return Mage::getModel('calculator/calculator')->getCollection()->setLimit(10);
+    }
 }
-
 ?>

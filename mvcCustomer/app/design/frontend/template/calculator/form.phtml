@@ -1,12 +1,13 @@
 <?php
-$data=$this->getUserName();
+$name = $this->getUser();
+$data = $this->getForm();
 ?>
 <form method="post" action="<?php echo Mage::getBaseUrl('admin/calculator/save') ?>">
-    <input type="hidden" name="calculator[id]" value="<?php echo $data->getId();?>">
+    <input type="hidden" name="calculator[id]" value="<?php echo $data->getId()?>">
     <label>User Name :</label>
-    <input type="text" name="calculator[user_name]" value="<?php echo $data->getUserName()?>">
+    <input type="text" name="calculator[user_name]" value="<?php echo $name ?>">
     <label>Input Box 1:</label>
-    <input type="number" name="calculator[from_number]" value="">
+    <input type="number" name="calculator[from_number]" value="<?php echo $data->getFromNumber()?>">
     <label>Operator</label>
     <select name="calculator[operator]">
         <option value="add">+</option>
@@ -15,6 +16,6 @@ $data=$this->getUserName();
         <option value="div">/</option>
     </select>
     <label>Input Box 2:</label>
-    <input type="text" name="calculator[to_number]" value="">
+    <input type="text" name="calculator[to_number]" value="<?php echo $data->getToNumber()?>">
     <input type="submit" value="Equal TO" name="submit">
- </from>
+    </from>

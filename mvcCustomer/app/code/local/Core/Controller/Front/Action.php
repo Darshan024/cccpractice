@@ -33,22 +33,5 @@ class Core_Controller_Front_Action
         $url = Mage::getBaseUrl($url);
         header('Location:' . $url);
     }
-    public function getResult($data)
-    {
-        $result = null;
-        if ($data['operator'] == 'add') {
-            $result = $data['from_number'] + $data['to_number'];
-            return $result;
-        } elseif ($data['operator'] == 'sub') {
-            $result = $data['from_number'] - $data['to_number'];
-            return $result;
-        } elseif ($data['operator'] == 'mul') {
-            $result = $data['from_number'] * $data['to_number'];
-            return $result;
-        } elseif ($data['operator'] == 'div') {
-            $result = $data['from_number'] / $data['to_number'];
-            return $result;
-        }
-    }
 }
 ?>

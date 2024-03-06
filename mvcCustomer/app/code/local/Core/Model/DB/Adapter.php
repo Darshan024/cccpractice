@@ -22,9 +22,9 @@ class Core_Model_DB_Adapter
     }
     public function fetchAll($query)
     {
-        $row=[];
+        $row = [];
         $result = $this->connect()->query($query);
-        while($_row = mysqli_fetch_assoc($result)){
+        while ($_row = mysqli_fetch_assoc($result)) {
             $row[] = $_row;
         }
         return $row;
