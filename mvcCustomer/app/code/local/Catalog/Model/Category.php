@@ -7,7 +7,7 @@ class Catalog_Model_Category extends Core_Model_Abstract
         $this->_collectionClass = 'Catalog_Model_Resource_Collection_Category';
         $this->_modelClass = 'catalog/category';
     }
-    public function getMappedStatus()
+    public function getStatus()
     {
         $mapping = [
             1 => "Enabled",

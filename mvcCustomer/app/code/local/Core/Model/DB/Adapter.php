@@ -55,7 +55,6 @@ class Core_Model_DB_Adapter
         } else {
             echo False;
         }
-
     }
     public function update($query)
     {

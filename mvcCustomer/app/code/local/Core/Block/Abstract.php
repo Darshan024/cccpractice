@@ -43,9 +43,6 @@ class Core_Block_Abstract
     public function getUrl($path){
         return "http://localhost/Practice/mvcCustomer/".$path;
     }
-
-    
-
     public function render()
     {
         include Mage::getBaseDir('app') . '/design/frontend/template/' . $this->getTemplate();

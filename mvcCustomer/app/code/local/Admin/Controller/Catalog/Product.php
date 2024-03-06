@@ -28,7 +28,7 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
         //     if (!isset($data['price']) || !is_numeric($data['price'])) {
         //         throw new Exception("Price is required or should be numeric");
         //     }
-            
+
         //     echo "saved";
         //     $id = (isset($data['product_id'])) ? $data['product_id'] : 0;
         //     $data = $this->getRequest()->getParams('pdata');
@@ -46,7 +46,8 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
             ->load($id)
             ->delete();
     }
-    public function listAction(){
+    public function listAction()
+    {
         $layout = $this->getLayout();
         $child = $layout->getChild('content');
 
@@ -54,4 +55,5 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
         $child->addChild('list', $productList);
         $layout->toHtml();
     }
+
 }

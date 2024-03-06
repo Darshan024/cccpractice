@@ -18,8 +18,8 @@ $categoryModel = $this->getCategory();
         <div class="row">
             <label for="status">Status : </label>
             <select id="status" name="catalog_product[status]">
-                <option value="1" <?php echo $categoryModel->getStatus() == 1 ? 'selected' : '' ?>>Enabled</option>
-                <option value="0" <?php echo $categoryModel->getStatus() == 0 ? 'selected' : '' ?>>Disabled</option>
+                <option value="1" <?php echo $categoryModel->getStatus() == 'Enabled' ? 'selected' : '' ?>>Enabled</option>
+                <option value="0" <?php echo $categoryModel->getStatus() == 'Disabled' ? 'selected' : '' ?>>Disabled</option>
             </select>
 
         </div>

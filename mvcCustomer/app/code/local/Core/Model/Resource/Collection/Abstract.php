@@ -21,11 +21,30 @@ class Core_Model_Resource_Collection_Abstract
         $this->_select['FROM'] = $this->_resource->getTableName();
         return $this;
     }
+
+    public function addGroupBy($field)
+    {
+        $this->_select['GROUP BY'] = $field;
+        return $this;
+    }
+
+    public function addOrderBy($field, $direction = 'ASC')
+    {
+        $this->_select['ORDER BY'] = "{$field} {$direction}";
+        return $this;
+    }
+
+    public function setLimit($limit, $offset = 0)
+    {
+        $this->_select['LIMIT'] = "LIMIT {$offset}, {$limit}";
+        return $this;
+    }
     public function addFieldToFilter($field, $value)
     {
         $this->_select['WHERE'][$field][] = $value;
         return $this;
     }
+
     public function load()
     {
         $sql = "SELECT * FROM {$this->_select['FROM']}";
@@ -76,12 +95,24 @@ class Core_Model_Resource_Collection_Abstract
 
             // print_r($whereCondition);
         }
+        if (!empty($this->_select['GROUP BY'])) {
+            $sql .= " GROUP BY {$this->_select['GROUP BY']}";
+        }
+
+        if (!empty($this->_select['ORDER BY'])) {
+            $sql .= " ORDER BY {$this->_select['ORDER BY']}";
+        }
+
+        if (!empty($this->_select['LIMIT'])) {
+            $sql .= " {$this->_select['LIMIT']}";
+        }
         // echo $sql;
         $result = $this->_resource->getAdapter()->fetchAll($sql);
         foreach ($result as $row) {
             $this->_data[] = Mage::getModel($this->_modelClass)->setData($row);
         }
         $this->_isLoaded = true;
+
         return $this;
         // print_r($this->_data);
     }
@@ -91,5 +122,10 @@ class Core_Model_Resource_Collection_Abstract
             $this->load();
         }
         return $this->_data;
+    }
+    public function getFirstItem()
+    {
+        $this->load();
+        return(isset($this->_data[0])) ? $this->_data[0] : null;
     }
 }

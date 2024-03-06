@@ -71,11 +71,11 @@ $productData = $this->getProductData();
                     <?php print_r($product->getMinPrice()); ?>
                 </td>
                 <td>
-                    <?php print_r($product->getMappedStatus()); ?>
+                    <?php print_r($product->getStatus()); ?>
                 </td>
                 <td>
                     <a
-                        href="http://localhost/Practice/mvcCustomer/catalog/product/view?id=<?php echo $product->getProductId(); ?>">View
+                        href="<?php echo Mage::getBaseUrl('catalog/product/view?id='.$product->getProductId())   ?>">View
                         Product</a>
                 </td>
             </tr>

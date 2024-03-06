@@ -7,7 +7,12 @@ class Catalog_Block_Category_View extends Core_Block_Template
     }
     public function getProductData()
     {
-        return Mage::getModel("catalog/product")->getCollection()->addFieldToFilter("category_id", $this->getRequest()->getParams("id"));
+        if ($this->getRequest()->getParams("id")) {
+            return Mage::getModel("catalog/product")->getCollection()->addFieldToFilter("category_id", $this->getRequest()->getParams("id"));
+        } else {
+            return Mage::getModel("catalog/product")->getCollection();
+        }
     }
+    
 }
 ?>

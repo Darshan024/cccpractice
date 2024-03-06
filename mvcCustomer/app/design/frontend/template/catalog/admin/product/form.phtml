@@ -5,7 +5,6 @@ $ProductModel = $this->getProduct();
     <h2>Product Form</h2>
     <form method="POST" action="<?php echo $this->getUrl('admin/catalog_product/save') ?>">
         <div class="row">
-            <!-- <label for="sku">SKU : </label> -->
             <input type="hidden" name="catalog_product[product_id]"
                 value="<?php echo $ProductModel->getProductId(); ?>">
         </div>
@@ -47,11 +46,11 @@ $ProductModel = $this->getProduct();
             <label for="link">Link : </label>
             <input type="file" name="catalog_product[link]" id="link" value="<?php echo $ProductModel->getLink(); ?>">
         </div>
-        <?php $cat = $this->getCategoryList(); ?>
+        <?php $categoryList = $this->getCategoryList();?>
         <div class="row">
             <label for="category_id">Category:</label>
             <select name="product[category_id]">
-                <?php foreach ($cat->getData() as $category): ?>
+                <?php foreach ($categoryList->getData() as $category): ?>
                     <option value="<?php echo $category->getCategoryId() ?>" <?php echo $category->getCategoryId() == $ProductModel->getCategoryId() ? 'selected' : ''; ?>>
                         <?php echo $category->getCategoryName(); ?>
                     </option>
@@ -92,8 +91,8 @@ $ProductModel = $this->getProduct();
         <div class="row">
             <label for="status">Status : </label>
             <select id="status" name="catalog_product[status]">
-                <option value="1" <?php echo $ProductModel->getStatus() == 1 ? 'selected' : '' ?>>Enabled</option>
-                <option value="0" <?php echo $ProductModel->getStatus() == 0 ? 'selected' : '' ?>>Disabled</option>
+                <option value="1" <?php echo $ProductModel->getStatus() == 'Enabled' ? 'selected' : '' ?>>Enabled</option>
+                <option value="0" <?php echo $ProductModel->getStatus() == 'Disabled' ? 'selected' : '' ?>>Disabled</option>
             </select>
         </div>
         <div class="row">

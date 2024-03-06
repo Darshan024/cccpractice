@@ -1,0 +1,10 @@
+<?php
+$calcualtor = Mage::getModel('calculator/calculator')->getCollection()->setLimit(10);
+
+foreach ($calcualtor->getData() as $calcualtordata) {
+
+    echo '<br>' . $calcualtordata->getUserName() . " " . $calcualtordata->getFromNumber() . " ". $calcualtordata->getOperator() . " " . $calcualtordata->getToNumber() . " =" . $calcualtordata->getResult() . " "; ?>
+
+    <?php
+}
+?>

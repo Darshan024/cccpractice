@@ -7,8 +7,7 @@ class Catalog_Model_Product extends Core_Model_Abstract
     $this->_collectionClass = 'Catalog_Model_Resource_Collection_Product';
     $this->_modelClass = 'catalog/product';
   }
-
-  public function getMappedStatus()
+  public function getStatus()
   {
     $mapping = [
       1 => "Enabled",

@@ -77,15 +77,15 @@ $productCollection = Mage::getModel("catalog/product")->getCollection();
                     <?php print_r($product->getMinPrice()); ?>
                 </td>
                 <td>
-                    <?php print_r($product->getMappedStatus()); ?>
+                    <?php print_r($product->getStatus()); ?>
                 </td>
                 <td>
                     <a
-                        href="http://localhost/Practice/mvcCustomer/admin/catalog_product/form?id=<?php echo $product->getProductId(); ?>">Edit</a>
+                        href="<?php echo Mage::getBaseUrl('admin/catalog_product/form?id=' . $product->getProductId()); ?>">Edit</a>
                 </td>
                 <td>
                     <a
-                        href="http://localhost/Practice/mvcCustomer/admin/catalog_product/delete?id=<?php echo $product->getProductId(); ?>">Delete</a>
+                        href="<?php echo Mage::getBaseUrl('admin/catalog_product/delete?id=' . $product->getProductId()); ?>">Delete</a>
                 </td>
             </tr>
 
