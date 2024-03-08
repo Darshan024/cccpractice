@@ -15,7 +15,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
             $quoteId = Mage::getSingleton("core/session")->get("quote_id");
             $this->load($quoteId);
         }
-        if (!$this->getId()) {
+        elseif(!$this->getId()) {
             $quote = Mage::getModel("sales/quote")
                 ->setData(["tax_percent" => 8, "grand_total" => 0])
                 ->save();
@@ -31,7 +31,6 @@ class Sales_Model_Quote extends Core_Model_Abstract
         return Mage::getModel('sales/quote_item')->getCollection()
             ->addFieldToFilter('quote_id', $this->getId());
     }
-
     protected function _beforeSave()
     {
         $grandTotal = 0;
@@ -48,7 +47,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
     public function addProduct($request)
     {
         $this->initQuote();
-        if ($this->getId()) {
+        if ($this->getId()){
             Mage::getModel("sales/quote_item")->addItem($this, $request['product_id'], $request['qty']);
         }
         $this->save();
@@ -56,7 +55,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
     public function removeProduct($id)
     {
         $this->initQuote();
-        if ($this->getId()) {
+        if ($this->getId()){
             Mage::getModel('sales/quote_item')->removeItem($this, $id);
         }
         $this->save();

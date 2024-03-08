@@ -1,0 +1,24 @@
+.quote-details,
+.quote-items {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.quote-detail,
+.quote-item {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.quote-item-actions a {
+    margin-right: 10px;
+    text-decoration: none;
+    background-color: #3498db;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+.quote-item-actions a:hover {
+    background-color: #2980b9;
+}

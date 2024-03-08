@@ -5,8 +5,8 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
 
     public function init()
     {
-        $this->_resourceClass = "Sales_Model_Quote_Resource_Item";
-        $this->_collectionClass = "Sales_Model_Quote_Resource_Collection_Item";
+        $this->_resourceClass = "Sales_Model_Resource_Quote_Item";
+        $this->_collectionClass = "Sales_Model_Resource_Collection_Quote_Item";
         $this->_modelClass = 'sales/quote_item';
     }
 
@@ -23,10 +23,8 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
             $qty = (int) $this->getQty();
             $this->addData('row_total', $price * $qty);
         } else {
-
         }
     }
-
     public function addItem(Sales_Model_Quote $quote, $productId, $qty)
     {
         $item = $this->getCollection()

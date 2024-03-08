@@ -13,33 +13,39 @@ foreach ($quote->getData() as $_quote) { ?>
         <label>Grand Total :</label>
         <?php echo $_quote->getGrandTotal(); ?>
     </div>
+    <div>
+        <a href="<?php echo Mage::getBaseUrl('sales/order/add?id=') . $_quote->getQuoteId() ?>">Order</a>
+    </div>
 <?php }
 $items = $this->getQuoteItems(); ?>
 <h2>Items</h2>
-<?php foreach ($items->getData() as $item) { ?>
-    <div>
-        <label>Item Id :</label>
-        <?php echo $item->getItemId(); ?>
+<div class="quote-item">
+    <?php foreach ($items->getData() as $item) { ?>
+        <div class="quote-items">
+            <label>Item Id :</label>
+            <?php echo $item->getItemId(); ?>
+        </div>
+        <div class="quote-items">
+            <label>Product Id :</label>
+            <?php echo $item->getProductId(); ?>
+        </div>
+        <div class="quote-items">
+            <label>Price :</label>
+            <?php echo $item->getPrice(); ?>
+        </div>
+        <div class="quote-items">
+            <label>Qty :</label>
+            <?php echo $item->getQty(); ?>
+        </div>
+        <div class="quote-items">
+            <label>Row Total :</label>
+            <?php echo $item->getRowTotal(); ?>
+        </div>
+        <br>
+        <div class="quote-item-actions">
+            <a href="<?php echo Mage::getBaseUrl('sales/quote/delete?id=') . $item->getItemId() ?>">Delete</a>
+            <a href="<?php echo Mage::getBaseUrl('sales/quote/update?id=') . $item->getItemId() ?>">Update</a>
+        </div>
+        <br>
     </div>
-    <div>
-        <label>Product Id :</label>
-        <?php echo $item->getProductId(); ?>
-    </div>
-    <div>
-        <label>Price :</label>
-        <?php echo $item->getPrice(); ?>
-    </div>
-    <div>
-        <label>Qty :</label>
-        <?php echo $item->getQty(); ?>
-    </div>
-    <div>
-        <label>Row Total :</label>
-        <?php echo $item->getRowTotal(); ?>
-    </div>
-    <div>
-        <a href="<?php echo Mage::getBaseUrl('sales/quote/delete?id=') . $item->getItemId() ?>">Delete</a>
-        <a href="<?php echo Mage::getBaseUrl('sales/quote/update?id=') . $item->getItemId() ?>">Update</a>
-    </div>
-    <br>
 <?php } ?>
