@@ -36,7 +36,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
     {
         $grandTotal = 0;
         foreach ($this->getItemCollection()->getData() as $_item) {
-            $grandTotal += $_item->getRowTotal();
+            $grandTotal += (int) $_item->getRowTotal();
         }
         if ($this->getTaxPercent()) {
             $tax = round($grandTotal / $this->getTaxPercent(), 2);
@@ -47,13 +47,27 @@ class Sales_Model_Quote extends Core_Model_Abstract
 
     public function addProduct($request)
     {
-
         $this->initQuote();
         if ($this->getId()) {
             Mage::getModel("sales/quote_item")->addItem($this, $request['product_id'], $request['qty']);
         }
         $this->save();
-
+    }
+    public function removeProduct($id)
+    {
+        $this->initQuote();
+        if ($this->getId()) {
+            Mage::getModel('sales/quote_item')->removeItem($this, $id);
+        }
+        $this->save();
+    }
+    public function updateProduct($data)
+    {
+        $this->initQuote();
+        if ($this->getId()) {
+            Mage::getModel('sales/quote_item')->updateItem($this,$data['item_id'],$data['qty']);
+        }
+        $this->save();
     }
 }
 

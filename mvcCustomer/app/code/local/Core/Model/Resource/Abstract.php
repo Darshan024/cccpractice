@@ -47,6 +47,7 @@ class Core_Model_Resource_Abstract
     public function save(Core_Model_Abstract $abstract)
     {
         $data = $abstract->getData();
+
         if (isset($data[$this->getPrimaryKey()]) && !empty($data[$this->getPrimaryKey()])) {
             $sql = $this->updateSql($this->getTableName(), $data, [$this->getPrimaryKey() => $abstract->getId()]);
             $this->getAdapter()->update($sql);

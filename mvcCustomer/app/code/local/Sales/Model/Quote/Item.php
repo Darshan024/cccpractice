@@ -18,10 +18,12 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
     protected function _beforeSave()
     {
         if ($this->getProductId()) {
-            $price = $this->getProduct()->getPrice();
+            $price = (int) $this->getProduct()->getPrice();
             $this->addData('price', $price);
-            $this->addData('row_total', $price * $this->getQty());
+            $qty = (int) $this->getQty();
+            $this->addData('row_total', $price * $qty);
         } else {
+
         }
     }
 
@@ -32,7 +34,6 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
             ->addFieldToFilter('quote_id', $quote->getId())
             ->getFirstItem()
         ;
-
         if ($item) {
             $qty = $qty + $item->getQty();
         }
@@ -47,7 +48,37 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
             $this->setId($item->getId());
         }
         $this->save();
-
+        return $this;
+    }
+    public function updateItem(Sales_Model_Quote $quote, $id, $qty)
+    {
+        $item = $this->getCollection()
+            ->addFieldToFilter('item_id', $id)
+            ->addFieldToFilter('quote_id', $quote->getId())
+            ->getFirstItem();    
+        $this->setData(
+            [
+                'quote_id' => $quote->getId(),
+                'product_id' => $item->getProductId(),
+                'qty' => $qty,
+            ]
+        );
+        if($item) {
+            $this->setId($item->getId());
+        }
+        $this->save();
+        return $this;
+    }
+    public function removeItem(Sales_Model_Quote $quote, $id)
+    {
+        $item = $this->getCollection()
+            ->addFieldToFilter('item_id', $id)
+            ->addFieldToFilter('quote_id', $quote->getId())
+            ->getFirstItem();
+        if($item){
+            $this->setId($item->getId());
+        }
+        $this->delete();
         return $this;
     }
 }

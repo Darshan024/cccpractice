@@ -1,0 +1,28 @@
+<?php
+$data = $this->getDa();
+?>
+<form method="post" action="<?php echo Mage::getBaseUrl('sales/quote/update') ?>">
+    <div>
+        <label>Item Id :</label>
+        <?php echo $data->getItemId(); ?>
+    </div>
+    <div>
+        <label>Product Id :</label>
+        <?php echo $data->getProductId(); ?>
+    </div>
+    <div>
+        <label>Price :</label>
+        <?php echo $data->getPrice(); ?>
+    </div>
+    <div>
+        <label>Qty :</label>
+        <?php echo $data->getQty(); ?>
+    </div>
+    <div>
+        <label>Row Total :</label>
+        <?php echo $data->getRowTotal(); ?>
+    </div>
+    <input type="hidden" value="<?php echo $data->getItemId() ?>" name="data[item_id]">
+    Enter Qty <input type="number" name="data[qty]" value="<?php echo $data->getQty(); ?>">
+    <input type='submit' name="submit">
+</form>
