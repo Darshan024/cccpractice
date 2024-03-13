@@ -14,7 +14,7 @@ foreach ($quote->getData() as $_quote) { ?>
         <?php echo $_quote->getGrandTotal(); ?>
     </div>
     <div>
-        <a href="<?php echo Mage::getBaseUrl('sales/order/add?id=') . $_quote->getQuoteId() ?>">Order</a>
+        <a href="<?php echo Mage::getBaseUrl('cart/checkout/form');?>">Checkout</a>
     </div>
 <?php }
 $items = $this->getQuoteItems(); ?>

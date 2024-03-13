@@ -14,8 +14,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
         if (Mage::getSingleton("core/session")->get("quote_id")) {
             $quoteId = Mage::getSingleton("core/session")->get("quote_id");
             $this->load($quoteId);
-        }
-        elseif(!$this->getId()) {
+        } elseif (!$this->getId()) {
             $quote = Mage::getModel("sales/quote")
                 ->setData(["tax_percent" => 8, "grand_total" => 0])
                 ->save();
@@ -47,7 +46,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
     public function addProduct($request)
     {
         $this->initQuote();
-        if ($this->getId()){
+        if ($this->getId()) {
             Mage::getModel("sales/quote_item")->addItem($this, $request['product_id'], $request['qty']);
         }
         $this->save();
@@ -55,7 +54,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
     public function removeProduct($id)
     {
         $this->initQuote();
-        if ($this->getId()){
+        if ($this->getId()) {
             Mage::getModel('sales/quote_item')->removeItem($this, $id);
         }
         $this->save();
@@ -64,9 +63,21 @@ class Sales_Model_Quote extends Core_Model_Abstract
     {
         $this->initQuote();
         if ($this->getId()) {
-            Mage::getModel('sales/quote_item')->updateItem($this,$data['item_id'],$data['qty']);
+            Mage::getModel('sales/quote_item')->updateItem($this, $data['item_id'], $data['qty']);
         }
         $this->save();
     }
+    public function convert()
+    {
+        $this->initQuote();
+        if ($this->getId()) {
+            $order = Mage::getModel('sales/order')->setData($this->getData())->save();
+            // print_r($this->getItemCollection()->getData());
+            foreach ($this->getItemCollection()->getData() as $_item) {
+                Mage::getModel('sales/order_item')->setData($_item->getData())->save();
+            }
+        }
+    }
+
 }
 

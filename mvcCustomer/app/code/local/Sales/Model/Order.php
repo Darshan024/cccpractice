@@ -1,15 +1,17 @@
 <?php
 class Sales_Model_Order extends Core_Model_Abstract
 {
-
-    public function getQuoteCollection($id)
+    public function init()
     {
-        return Mage::getSingleton('sales/quote')->load($id);
+        $this->_modelClass = 'sales/order';
+        $this->_resourceClass = 'Sales_Model_Resource_Order';
+        $this->_collectionClass = 'Sales_Model_Resource_Collection_Order';
     }
-    public function addOrder($id)
+    protected function _beforeSave()
     {
-        $quoteCollection = $this->getQuoteCollection($id);
-        print_r($quoteCollection);
+        $this->removeData('quote_id');
+        $this->removeData('shipping_method');
+        $this->removeData('payment_method');
     }
 }
 ?>

@@ -6,5 +6,9 @@ class Sales_Model_Quote_Customer extends Core_Model_Abstract
         $this->_collectionClass = "Sales_Model_Resource_Collection_Quote_Customer";
         $this->_modelClass = "sales/quote_customer";
     }
+    protected function _beforeSave(){
+        $this->addData('quote_id', Mage::getSingleton('core/session')->get('quote_id'));
+        $this->addData('customer_id', Mage::getSingleton('core/session')->get('customer_id'));
+    }
 }
 ?>

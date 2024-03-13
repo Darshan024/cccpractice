@@ -36,5 +36,15 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action
             echo "Data Not Found";
         }
     }
+    public function saveAction()
+    {
+        $salesCustomerData = $this->getRequest()->getParams('sales_quote_customer');
+        $salesQuoteData = $this->getRequest()->getParams('sales_quote');
+        Mage::getModel('sales/quote_customer')->setData($salesCustomerData)->save();
+        // print_r($salesCustomerData);
+        Mage::getModel('sales/quote')->setData($salesQuoteData)->save();
+        Mage::getSingleton('sales/quote')->convert();
+        // echo 123;
+    }
 }
 ?>
