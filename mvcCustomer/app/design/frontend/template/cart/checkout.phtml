@@ -1,5 +1,5 @@
 <?php $addressData = $this->getAddressData()->getData();
-$customerEmail = '';
+$customerEmail = $this->getCustomerEmail();
 ?>
 <section class="checkout-section">
     <div class="item-section">
@@ -38,19 +38,35 @@ $customerEmail = '';
             <?php } ?>
         </div>
     </div>
-    <div class="address-show">
-        <?php if (!empty($addressData)): ?>
-            <?php foreach ($addressData as $addValue):
-                if ($addValue->getCustomerId() == Mage::getSingleton('core/session')->get('customer_id')): ?>
+    <div class="first">
+        <div class="billingAddress">
+            <h2>Billing Address</h2>
+            <hr>
+        </div>
+        <?php if (!empty ($addressData)): ?>
+            <?php foreach ($addressData as $addValue) { ?>
+                <div class="addressBoxes">
                     <div id="asdasdasdasd" class="address-cards"
-                        data-json='{"customer":"<?php echo $addValue->getCustomerId(); ?>","billing_address":"<?php echo $addValue->getBillingAddress(); ?>","billing_city":"<?php echo $addValue->getBillingCity(); ?>","billing_country":"<?php echo $addValue->getBillingCountry(); ?>"}'>
-                        <p>Customer Id :
-                            <?php $customerEmail = $addValue->getCustomerEmail();
-                            echo $addValue->getCustomerId(); ?>
+                        data-json='{"billing_address":"<?php echo $addValue->getBillingAddress(); ?>","billing_city":"<?php echo $addValue->getBillingCity(); ?>","billing_region":"<?php echo $addValue->getBillingRegion(); ?>","billing_country":"<?php echo $addValue->getBillingCountry(); ?>","billing_phone":"<?php echo $addValue->getBillingPhone(); ?>"}'>
+                        <p>Address :
+                            <?php echo $addValue->getBillingAddress() ?>
+                        </p>
+                        <p>City :
+                            <?php echo $addValue->getBillingCity() ?>
+                        </p>
+                        <p>Region :
+                            <?php echo $addValue->getBillingRegion() ?>
+                        </p>
+                        <p>Country :
+                            <?php echo $addValue->getBillingCountry() ?>
+                        </p>
+                        <p>Phone No:
+                            <?php echo $addValue->getBillingPhone() ?>
                         </p>
                     </div>
-                <?php endif; ?>
-            <?php endforeach; ?>
+                </div>
+            <?php }
+            ?>
         <?php endif; ?>
     </div>
     <div class="form-section">
@@ -66,12 +82,12 @@ $customerEmail = '';
                 </div>
                 <div class="field-group">
                     <label for="billing_address" class="label-billing-address">Billing Address:</label>
-                    <input type="text" id="billing_address" name="sales_quote_customer[billing_address]" 
+                    <input type="text" id="billing_address" name="sales_quote_customer[billing_address]"
                         class="input-billing-address">
                 </div>
                 <div class="field-group">
                     <label for="billing_city" class="label-billing-city">Billing City:</label>
-                    <input type="text" id="billing_city" name="sales_quote_customer[billing_city]" 
+                    <input type="text" id="billing_city" name="sales_quote_customer[billing_city]"
                         class="input-billing-city">
                 </div>
 
@@ -83,19 +99,19 @@ $customerEmail = '';
 
                 <div class="field-group">
                     <label for="billing_country" class="label-billing-country">Billing Country:</label>
-                    <input type="text" id="billing_country" name="sales_quote_customer[billing_country]" 
+                    <input type="text" id="billing_country" name="sales_quote_customer[billing_country]"
                         class="input-billing-country">
                 </div>
 
                 <div class="field-group">
                     <label for="billing_phone" class="label-billing-phone">Billing Phone:</label>
-                    <input type="tel" id="billing_phone" name="sales_quote_customer[billing_phone]" 
+                    <input type="tel" id="billing_phone" name="sales_quote_customer[billing_phone]"
                         class="input-billing-phone">
                 </div>
 
                 <div class="field-group">
                     <label for="billing_post_code" class="label-billing-post_code">Billing Post Code:</label>
-                    <input type="text" id="billing_post_code" name="sales_quote_customer[billing_post_code]" 
+                    <input type="text" id="billing_post_code" name="sales_quote_customer[billing_post_code]"
                         class="input-billing-post_code">
                 </div>
 
@@ -111,13 +127,13 @@ $customerEmail = '';
 
                 <div class="field-group">
                     <label for="shipping_address" class="label-shipping-address">Shipping Address:</label>
-                    <input type="text" id="shipping_address" name="sales_quote_customer[shipping_address]" 
+                    <input type="text" id="shipping_address" name="sales_quote_customer[shipping_address]"
                         class="input-shipping-address">
                 </div>
 
                 <div class="field-group">
                     <label for="shipping_city" class="label-shipping-city">Shipping City:</label>
-                    <input type="text" id="shipping_city" name="sales_quote_customer[shipping_city]" 
+                    <input type="text" id="shipping_city" name="sales_quote_customer[shipping_city]"
                         class="input-shipping-city">
                 </div>
 
@@ -129,19 +145,19 @@ $customerEmail = '';
 
                 <div class="field-group">
                     <label for="shipping_country" class="label-shipping-country">Shipping Country:</label>
-                    <input type="text" id="shipping_country" name="sales_quote_customer[shipping_country]" 
+                    <input type="text" id="shipping_country" name="sales_quote_customer[shipping_country]"
                         class="input-shipping-country">
                 </div>
 
                 <div class="field-group">
                     <label for="shipping_phone" class="label-shipping-phone">Shipping Phone:</label>
-                    <input type="tel" id="shipping_phone" name="sales_quote_customer[shipping_phone]" 
+                    <input type="tel" id="shipping_phone" name="sales_quote_customer[shipping_phone]"
                         class="input-shipping-phone">
                 </div>
 
                 <div class="field-group">
                     <label for="shipping_post_code" class="label-shipping-post_code">Shipping Post Code:</label>
-                    <input type="text" id="shipping_post_code" name="sales_quote_customer[shipping_post_code]" 
+                    <input type="text" id="shipping_post_code" name="sales_quote_customer[shipping_post_code]"
                         class="input-shipping-post_code">
                 </div>
 
@@ -151,7 +167,7 @@ $customerEmail = '';
             <div class="form-group">
                 <div class="field-group">
                     <label for="shipping_options" class="label-shipping-options">Shipping Options:</label>
-                    <select id="shipping_options" name="sales_quote_shipping_method[shipping_method]" 
+                    <select id="shipping_options" name="sales_quote_shipping_method[shipping_method]"
                         class="select-payment-options">
                         <?php $shippingOptions = $this->getShippingOption(); ?>
                         <?php foreach ($shippingOptions as $key => $value) { ?>
@@ -167,7 +183,7 @@ $customerEmail = '';
             <div class="form-group">
                 <div class="field-group">
                     <label for="payment_options" class="label-payment-options">Payment Options:</label>
-                    <select id="payment_options" name="sales_quote_payment_method[payment_method]" 
+                    <select id="payment_options" name="sales_quote_payment_method[payment_method]"
                         class="select-payment-options">
                         <?php $paymentOptions = $this->getPaymentOption(); ?>
                         <?php foreach ($paymentOptions as $key => $value) { ?>
@@ -204,4 +220,20 @@ $customerEmail = '';
             // document.getElementById('shipping_zip').value = '';
         }
     }
+</script>
+<script type="text/javascript">
+    $('.address-cards').each((i, e) => {
+        console.log($(e).attr('data-json'))
+        $(e).click(() => {
+            var _data = JSON.parse($(e).attr('data-json'))
+            for (var key in _data) {
+                if (_data.hasOwnProperty(key)) {
+                    $('#' + key).val(_data[key]);
+                }
+            }
+            // $('#billing_address').val(_data.billing_address);
+            // $('#billing_city').val(_data.billing_city);
+            // $('#billing_country').val(_data.billing_country);
+        });
+    })
 </script>

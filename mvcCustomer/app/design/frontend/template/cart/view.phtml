@@ -21,6 +21,7 @@ $items = $this->getQuoteItems(); ?>
 <h2>Items</h2>
 <div class="quote-item">
     <?php foreach ($items->getData() as $item) { ?>
+        
         <div class="quote-items">
             <label>Item Id :</label>
             <?php echo $item->getItemId(); ?>

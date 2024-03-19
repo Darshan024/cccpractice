@@ -1,5 +1,3 @@
-<!-- <pre><
-?> -->
 <style>
     body {
         font-family: sans-serif;
@@ -80,6 +78,7 @@
                     <th>Row Total</th>
                     <th>Product Name</th>
                     <th>Product Color</th>
+                    <th>Cancel</th>
                 </tr>
 
                 <?php foreach ($orderItems as $item) { ?>
@@ -105,13 +104,16 @@
                         <th>
                             <?php echo $item->getProductColor(); ?>
                         </th>
+                        <th>
+                            <a href="">Cancel</a>
+
+                        </th>
                     </tr>
-                    <?php } ?>
+                <?php } ?>
             </table>
         </div>
-    <?php } // End check for order items            ?>
+    <?php } // End check for order items               ?>
     <?php
-    // Assuming `getOrder` function returns expected data
     $orderDetails = $this->getOrder($orderId)->getData();
     foreach ($orderDetails as $order) {
         ?>
@@ -123,7 +125,6 @@
             <p><strong>Tax (
                     <?php echo $order->getTaxPercent(); ?>%):
                 </strong>
-                <?php /* Calculate and display tax amount */ ?>
             </p>
             <p><strong>Grand Total:</strong>
                 <?php echo $order->getGrandTotal(); ?>

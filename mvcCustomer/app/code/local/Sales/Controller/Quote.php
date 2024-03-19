@@ -48,7 +48,7 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action
         Mage::getSingleton('sales/quote')->addAddress($salesCustomerData);
 
         Mage::getSingleton('sales/quote')->convert();
-        // Mage::getSingleton('core/session')->remove('quote_id');
+        Mage::getSingleton('core/session')->remove('quote_id');
 
     }
 }

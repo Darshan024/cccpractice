@@ -3,6 +3,7 @@
 class Sales_Model_Quote_Item extends Core_Model_Abstract
 {
 
+    protected $_product = '';
     public function init()
     {
         $this->_modelClass = 'sales/quote_item';
@@ -12,7 +13,11 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
 
     public function getProduct()
     {
-        return Mage::getModel('catalog/product')->load($this->getProductId());
+        if ($this->_product) {
+            return $this->_product;
+        }
+        $this->_product = Mage::getModel('catalog/product')->load($this->getProductId());
+        return $this->_product;
     }
 
     protected function _beforeSave()
@@ -32,6 +37,7 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
             ->addFieldToFilter('quote_id', $quote->getId())
             ->getFirstItem()
         ;
+
         if ($item) {
             $qty = $qty + $item->getQty();
         }
@@ -46,6 +52,7 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
             $this->setId($item->getId());
         }
         $this->save();
+        print_r($item);
         return $this;
     }
     public function updateItem(Sales_Model_Quote $quote, $id, $qty)
@@ -53,7 +60,7 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
         $item = $this->getCollection()
             ->addFieldToFilter('item_id', $id)
             ->addFieldToFilter('quote_id', $quote->getId())
-            ->getFirstItem();    
+            ->getFirstItem();
         $this->setData(
             [
                 'quote_id' => $quote->getId(),
@@ -61,7 +68,7 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
                 'qty' => $qty,
             ]
         );
-        if($item) {
+        if ($item) {
             $this->setId($item->getId());
         }
         $this->save();
@@ -73,7 +80,7 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
             ->addFieldToFilter('item_id', $id)
             ->addFieldToFilter('quote_id', $quote->getId())
             ->getFirstItem();
-        if($item){
+        if ($item) {
             $this->setId($item->getId());
         }
         $this->delete();
