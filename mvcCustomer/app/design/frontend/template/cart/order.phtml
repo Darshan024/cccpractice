@@ -1,0 +1,133 @@
+<!-- <pre><
+?> -->
+<style>
+    body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1,
+    h2 {
+        margin: 10px 0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    th {
+        text-align: left;
+    }
+
+    .order-details {
+        margin-bottom: 20px;
+    }
+
+    .order-items {
+        width: 60%;
+        margin: 0 auto;
+    }
+</style>
+
+<?php foreach ($this->getCustomerDetails()->getData() as $addressData) {
+    $orderId = $addressData->getOrderId(); ?>
+    <h1>Order Details</h1>
+    <div class="order-details">
+        <h2>Customer Information</h2>
+        <p><strong>Customer ID:</strong>
+            <?php echo $addressData->getCustomerId(); ?>
+        </p>
+        <p><strong>Email:</strong>
+            <?php echo $addressData->getEmail(); ?>
+        </p>
+    </div>
+    <div class="order-details">
+        <h2>Billing Address</h2>
+        <p>
+            <strong>Billing Address:</strong>
+            <?php echo $addressData->getBillingAddress(); ?><br>
+            <strong>Billing City:</strong>
+            <?php echo $addressData->getBillingCity(); ?><br>
+            <strong>BIlling PostCode:</strong>
+            <?php echo $addressData->getBillingPostCode(); ?><br>
+            <strong>Billing Phone:</strong>
+            <?php echo $addressData->getBillingPhone(); ?>
+        </p>
+    </div>
+
+
+    <?php
+    $orderItems = $this->getOrderItems($orderId)->getData();
+    if (count($orderItems) > 0) {
+        ?>
+        <div class="order-items">
+            <h2>Order Items</h2>
+            <table>
+
+                <tr>
+                    <th>Item Id</th>
+                    <th>Order Id</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Row Total</th>
+                    <th>Product Name</th>
+                    <th>Product Color</th>
+                </tr>
+
+                <?php foreach ($orderItems as $item) { ?>
+                    <tr>
+                        <th>
+                            <?php echo $item->getId(); ?>
+                        </th>
+                        <th>
+                            <?php echo $item->getOrderId(); ?>
+                        </th>
+                        <th>
+                            <?php echo $item->getQty(); ?>
+                        </th>
+                        <th>
+                            <?php echo $item->getPrice(); ?>
+                        </th>
+                        <th>
+                            <?php echo $item->getRowTotal(); ?>
+                        </th>
+                        <th>
+                            <?php echo $item->getProductName(); ?>
+                        </th>
+                        <th>
+                            <?php echo $item->getProductColor(); ?>
+                        </th>
+                    </tr>
+                    <?php } ?>
+            </table>
+        </div>
+    <?php } // End check for order items            ?>
+    <?php
+    // Assuming `getOrder` function returns expected data
+    $orderDetails = $this->getOrder($orderId)->getData();
+    foreach ($orderDetails as $order) {
+        ?>
+        <div class="order-details">
+            <h2>Order Summary</h2>
+            <p><strong>Order Number:</strong>
+                <?php echo $order->getOrderId(); ?>
+            </p>
+            <p><strong>Tax (
+                    <?php echo $order->getTaxPercent(); ?>%):
+                </strong>
+                <?php /* Calculate and display tax amount */ ?>
+            </p>
+            <p><strong>Grand Total:</strong>
+                <?php echo $order->getGrandTotal(); ?>
+            </p>
+        </div>
+    <?php } ?>
+<?php } ?>

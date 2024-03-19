@@ -36,15 +36,20 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action
             echo "Data Not Found";
         }
     }
-    public function saveAction()
+    public function convertAction()
     {
+        $shippingMethod = $this->getRequest()->getParams('sales_quote_shipping_method');
+        Mage::getSingleton('sales/quote')->addShippingMethod($shippingMethod);
+
+        $paymentMethod = $this->getRequest()->getParams('sales_quote_payment_method');
+        Mage::getSingleton('sales/quote')->addPaymentMethod($paymentMethod);
+
         $salesCustomerData = $this->getRequest()->getParams('sales_quote_customer');
-        $salesQuoteData = $this->getRequest()->getParams('sales_quote');
-        Mage::getModel('sales/quote_customer')->setData($salesCustomerData)->save();
-        // print_r($salesCustomerData);
-        Mage::getModel('sales/quote')->setData($salesQuoteData)->save();
+        Mage::getSingleton('sales/quote')->addAddress($salesCustomerData);
+
         Mage::getSingleton('sales/quote')->convert();
-        // echo 123;
+        // Mage::getSingleton('core/session')->remove('quote_id');
+
     }
 }
 ?>

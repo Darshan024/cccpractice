@@ -1,0 +1,119 @@
+.checkout-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.item-section {
+    order: 2;
+    flex-basis: 40%;
+    align-self: flex-start;
+}
+
+
+.form-section {
+    order: 1;
+    flex-basis: 48%;
+    align-self: flex-start;
+
+}
+
+.quote-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.quote-items label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.quote-item-actions {
+    margin-top: 10px;
+}
+
+.quote-item-actions a {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 5px 10px;
+    text-decoration: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.form-show {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.form-show h2 {
+    margin-top: 0;
+}
+
+.field-group {
+    margin-bottom: 10px;
+}
+
+.label-billing-address,
+.label-billing-city,
+.label-billing-region,
+.label-billing-country,
+.label-billing-phone,
+.label-billing-post_code,
+.label-shipping-address,
+.label-shipping-city,
+.label-shipping-region,
+.label-shipping-country,
+.label-shipping-phone,
+.label-shipping-post_code {
+    display: block;
+    font-weight: bold;
+}
+
+.input-billing-address,
+.input-billing-city,
+.input-billing-region,
+.input-billing-country,
+.input-billing-phone,
+.input-billing-post_code,
+.input-shipping-address,
+.input-shipping-city,
+.input-shipping-region,
+.input-shipping-country,
+.input-shipping-phone,
+.input-shipping-post_code {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.checkbox-same-as-billing {
+    margin-top: 10px;
+}
+
+.select-payment-options {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.submit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}

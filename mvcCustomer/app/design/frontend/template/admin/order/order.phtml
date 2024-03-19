@@ -1,0 +1,68 @@
+<?php
+$orderData = $this->getOrderData();
+?>
+
+<div class="container-new">
+    <table class="table-new" border="1">
+        <thead>
+            <tr>
+                <th>Item Number</th>
+                <th>Customer Id</th>
+                <th>Order Number</th>
+                <th>Product Image</th>
+                <th>Product Name</th>
+                <th>Product Color</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Row Total</th>
+                <th>Tax Percent</th>
+                <th>Grand Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $a = 1;
+            foreach ($orderData->getData() as $data) {
+                foreach ($this->getOrderItemData($data->getOrderId())->getData() as $orderData) {
+                    foreach ($this->getProductData($orderData->getProductId())->getData() as $productData) {
+                        foreach ($this->getAddressData($data->getOrderId())->getData() as $addressData) { ?>
+                            <tr>
+                                <td>
+                                    <?php echo $a++; ?>
+                                </td>
+                                <td>
+                                    <?php print_r($data->getCustomerId()); ?>
+                                </td>
+                                <td>
+                                    <?php print_r($data->getOrderNumber()); ?>
+                                </td>
+                                <td><img src="<?php echo Mage::getBaseUrl("media/product/") . $productData->getImageLink(); ?>"
+                                        alt="Product Image" class="product-image-new" style="width:100px"></td>
+                                <td>
+                                    <?php print_r($orderData->getProductName()); ?>
+                                </td>
+                                <td>
+                                    <?php print_r($orderData->getProductColor()); ?>
+                                </td>
+                                <td>
+                                    <?php print_r($orderData->getPrice()); ?>
+                                </td>
+                                <td>
+                                    <?php print_r($orderData->getQty()); ?>
+                                </td>
+                                <td>
+                                    <?php print_r($orderData->getRowTotal()); ?>
+                                </td>
+                                <td>
+                                    <?php print_r($data->getTaxPercent()); ?>
+                                </td>
+                                <td>
+                                    <?php print_r($data->getGrandTotal()); ?>
+                                </td>
+                            </tr>
+                        <?php }
+                    }
+                }
+            } ?>
+        </tbody>
+    </table>
+</div>

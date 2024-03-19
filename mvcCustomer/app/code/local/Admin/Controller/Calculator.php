@@ -9,8 +9,8 @@ class Admin_Controller_Calculator extends Core_Controller_Admin_Action
         $form = $layout->createBlock('calculator/form');
         $child->addChild('form', $form);
         // $layout->toHtml();
-        $layout = $this->getLayout();
-        $child = $layout->getChild('content');
+        // $layout = $this->getLayout();
+        // $child = $layout->getChild('content');
         $list = $layout->createBlock('calculator/list');
         $child->addChild('list', $list);
         $layout->toHtml();

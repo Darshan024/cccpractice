@@ -49,8 +49,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             $loginForm = $layout->createBlock("customer/login");
             $child->addChild('form', $loginForm);
             $layout->toHtml();
-        }
-        elseif($this->getRequest()->isPost()) {
+        } elseif ($this->getRequest()->isPost()) {
             $data = $this->getRequest()->getParams('login');
             $email = $data['customer_email'];
             $password = $data['password'];
@@ -65,14 +64,14 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             }
             if ($count == 1) {
                 Mage::getSingleton('core/session')->set('customer_id', $customerId);
-                $this->setRedirect('customer/account/dashboard');
+                if (Mage::getSingleton('core/session')->get('get_back_url')) {
+                    $this->setRedirect(Mage::getSingleton('core/session')->get('get_back_url'));
+                } else {
+                    $this->setRedirect('customer/account/dashboard');
+                }
             } else {
                 $this->setRedirect('customer/account/login');
             }
-            // $cusotmer = Mage::getModel('customer/customer')
-            //     ->setData($data)
-            //     ->checkPassword();
-            // $id = $cusotmer->getId()['customer_id'];
         }
     }
     public function dashboardAction()
@@ -82,7 +81,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
         $layout->getChild('head')->addCss('customer/details.css');
         $child = $layout->getChild("content");
         $dashboard = $layout->createBlock("customer/details");
-        $child->addChild('dashboard',$dashboard);
+        $child->addChild('dashboard', $dashboard);
         $dashboard->setCustomerId($customerId);
         $layout->toHtml();
     }
@@ -95,8 +94,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             $forgotForm = $layout->createBlock('customer/forgot');
             $child->addChild('forgot', $forgotForm);
             $layout->toHtml();
-        }
-        elseif($this->getRequest()->isPost()) {
+        } elseif ($this->getRequest()->isPost()) {
             $data = $this->getRequest()->getParams('forgot');
             $email = $data['customer_email'];
             $customerCollection = Mage::getModel('customer/customer')->getCollection()
