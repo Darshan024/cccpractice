@@ -1,9 +1,9 @@
 <?php
-class Admin_Block_Order_Order extends Core_Block_Template
+class Sales_Block_Admin_Order_Order extends Core_Block_Template
 {
     public function __construct()
     {
-        $this->setTemplate('admin/order/order.phtml');
+        $this->setTemplate('sales/admin/order/order.phtml');
     }
     public function getOrderData()
     {
@@ -27,6 +27,9 @@ class Admin_Block_Order_Order extends Core_Block_Template
         return Mage::getModel('sales/order_customer')
             ->getCollection()
             ->addFieldToFilter('order_id', $orderId);
+    }
+    public function getStatusOptions(){
+        return Mage::getModel('sales/order_history')->getStatusOptions();
     }
 }
 ?>

@@ -71,7 +71,7 @@
                 <?php } ?>
             </table>
         </div>
-    <?php } // End check for order items                      ?>
+    <?php } // End check for order items                       ?>
     <?php
     $orderDetails = $this->getOrder($orderId)->getData();
     foreach ($orderDetails as $order) {
@@ -89,14 +89,9 @@
                 <?php echo $order->getGrandTotal(); ?>
             </p>
             <p><strong>Order Status:</strong>
+                <?php echo $order->getStatus(); ?>
                 <?php
-                if ($order->getStatus() == 'declined') {
-                    echo 'Cancellation Request Rejected';
-                } elseif ($order->getStatus() == 'canceled') {
-                    echo 'Cancellation Request Accepted';
-                } elseif ($order->getStatus() == 'cancellation_request') {
-                    echo 'Cancellation Request Pending';
-                } elseif ($order->getStatus() != 'cancellation_request' && $order->getStatus() != 'completed') {
+                if ($order->getStatus() != 'cancellation_request' && $order->getStatus() != 'completed' && $order->getStatus() != 'canceled') {
                     echo '<p><a href="' . Mage::getBaseUrl('cart/index/cancel?id=' . $order->getId()) . '"><strong>Cancel Order</strong></a></p>';
                 }
                 ?>

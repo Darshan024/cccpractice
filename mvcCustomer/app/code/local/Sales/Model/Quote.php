@@ -166,7 +166,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
     }
     public function convertItems($orderId)
     {
-        if ($this->get()) {
+        if ($this->getId()) {
             foreach ($this->getItemCollection()->getData() as $_item) {
                 $_item->addData('order_id', $orderId);
                 Mage::getModel('sales/order_item')->addOrderItem($_item);

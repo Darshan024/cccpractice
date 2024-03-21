@@ -1,0 +1,38 @@
+<?php
+$customer = $this->getCustomerDetails();
+?>
+<table class="table-new" border="1">
+    <thead>
+        <tr>
+            <th>Customer Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tr>
+        <td>
+            <?php echo $customer->getId(); ?>
+        </td>
+        <td>
+            <?php echo $customer->getFirstName(); ?>
+        </td>
+        <td>
+            <?php echo $customer->getLastName(); ?>
+        </td>
+        <td>
+            <?php echo $customer->getCustomerEmail(); ?>
+            
+        </td>
+    </tr>
+</table>
+order details
+<?php echo '<pre>';
+print_r($this->getOrder());
+foreach ($this->getOrderItems()->getData() as $item) {
+    print_r($item);
+    print_r($this->getProductData($item->getProductId()));
+}
+
+
+?>

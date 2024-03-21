@@ -33,5 +33,16 @@ class Sales_Model_Order_History extends Core_Model_Abstract
         $status = $order->getStatus();
         return $status;
     }
+    public function getStatusOptions(){
+        $statusOptions = [
+            "pending" => "Pending",
+            "canceled" => "Canceled",
+            "shipped" => "Shipped",
+            "declined" => "Declined",
+            "funded" => "Funded",
+            "completed" => "Completed"
+        ];
+        return $statusOptions;
+    }
 }
 ?>

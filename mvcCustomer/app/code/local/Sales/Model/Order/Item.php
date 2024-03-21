@@ -14,9 +14,9 @@ class Sales_Model_Order_Item extends Core_Model_Abstract
     }
     public function addOrderItem($_item)
     {
-        $_item->removeData('quote_id');
-        $_item->removeData('item_id');
-        $this->setData($_item->getData())->save();
+        $this->setData($_item->getData())
+            ->removeData('quote_id')
+            ->removeData('item_id')->save();
     }
     protected function _beforeSave()
     {

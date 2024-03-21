@@ -1,16 +1,14 @@
 <?php
-class Admin_Controller_Order extends Core_Controller_Admin_Action
+class Admin_Controller_Sales extends Core_Controller_Admin_Action
 {
-    public function indexAction()
+    public function orderAction()
     {
         $layout = $this->getLayout();
         $layout->getChild('head')->addCss('order/cancel.css');
         $layout->getChild('head')->addCss('order/order.css');
         $child = $layout->getChild('content');
-        $order = $layout->createBlock('admin/order_order');
+        $order = $layout->createBlock('sales/admin_order_order');
         $child->addChild('order', $order);
-        $canceledOrder = $layout->createBlock('admin/order_canceledOrder');
-        $child->addChild('list', $canceledOrder);
         $layout->toHtml();
     }
     public function saveAction()
@@ -21,7 +19,7 @@ class Admin_Controller_Order extends Core_Controller_Admin_Action
             Mage::getModel('sales/order')->setData($data)->save();
             $this->setRedirect('admin/order');
         }
-        $this->setRedirect('admin/order');
+        $this->setRedirect('admin/sales/order');
     }
     public function acceptAction()
     {
@@ -32,7 +30,7 @@ class Admin_Controller_Order extends Core_Controller_Admin_Action
         ];
         Mage::getModel('sales/order_history')->updateHistory($data, 2);
         Mage::getModel('sales/order')->setData($data)->save();
-        $this->setRedirect('admin/order');
+        $this->setRedirect('admin/sales/order');
     }
     public function rejectAction()
     {
@@ -43,7 +41,14 @@ class Admin_Controller_Order extends Core_Controller_Admin_Action
         ];
         Mage::getModel('sales/order_history')->updateHistory($data, 2);
         Mage::getModel('sales/order')->setData($data)->save();
-        $this->setRedirect('admin/order');
+        $this->setRedirect('admin/sales/order');
+    }
+    public function viewAction(){
+        $layout = $this->getLayout();
+        $child = $layout->getChild('content');
+        $order = $layout->createBlock('sales/admin_order_view');
+        $child->addChild('order', $order);
+        $layout->toHtml();
     }
 }
 ?>

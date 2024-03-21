@@ -1,0 +1,70 @@
+<?php
+$orderData = $this->getOrderData();
+?>
+
+<div class="container-new">
+    <table class="table-new" border="1">
+        <thead>
+            <tr>
+                <th>Order Id</th>
+                <th>Order Number</th>
+                <th>Grand Total</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Update Status</th>
+                <th>Cancellation Request</th>
+                <th>View</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($orderData->getData() as $data) { ?>
+                <tr>
+                    <td>
+                        <?php print_r($data->getOrderId()); ?>
+                    </td>
+                    <td>
+                        <?php print_r($data->getOrderNumber()); ?>
+                    </td>
+                    <td>
+                        <?php print_r($data->getGrandTotal()); ?>
+                    </td>
+                    <td>
+                        <?php print_r($data->getDate()); ?>
+                    </td>
+                    <td>
+                        <?php print_r($data->getStatus()); ?>
+
+                    </td>
+                    <td>
+                        <form id="orderForm" method="post" action="<?php echo Mage::getBaseUrl('admin/order/save') ?>">
+                            <input type="hidden" name="order[order_id]" value="<?php echo $data->getOrderId() ?>">
+                            <select id="statusSelect" name="order[status]">
+                                <?php $statusOptions = $this->getStatusOptions(); ?>
+                                <?php foreach ($statusOptions as $key => $value) { ?>
+                                    <option value="<?php echo $key ?>">
+                                        <?php echo $value ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                            <br>
+                            <input type="submit" value="update">
+                        </form>
+                    </td>
+                    <td>
+                        <?php if ($data->getStatus() == 'cancellation_request') { ?>
+                            <a class="accept-button"
+                                href="<?php echo Mage::getBaseUrl('admin/sales/accept?id=' . $data->getId()); ?>">Accept</a>
+                            <a class="reject-button"
+                                href="<?php echo Mage::getBaseUrl('admin/sales/reject?id=' . $data->getId()); ?>">Reject</a>
+                        <?php } ?>
+                    </td>
+                    <td>
+                        <a href="<?php echo Mage::getBaseUrl('admin/sales/view?id='.$data->getId()) ?>">View Order Details</a>
+                    </td>
+                </tr>
+            <?php }
+            ?>
+        </tbody>
+    </table>
+</div>

@@ -39,6 +39,8 @@ class Core_Model_DB_Adapter
     }
     public function fetchRow($query)
     {
+        echo $query;
+
         $row = [];
         $this->connect();
         $result = mysqli_query($this->connect, $query);
