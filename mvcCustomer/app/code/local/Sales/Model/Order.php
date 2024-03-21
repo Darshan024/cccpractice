@@ -8,6 +8,16 @@ class Sales_Model_Order extends Core_Model_Abstract
         $this->_collectionClass = 'Sales_Model_Resource_Collection_Order';
     }
 
+    public function addOrder(Sales_Model_Quote $orderData)
+    {
+        $this->setData($orderData->getData())
+                        ->removeData('shipping_id')
+                        ->removeData('order_id')
+                        ->removeData('payment_id')
+                        ->removeData('quote_id')
+                        ->save();
+        return $this;
+    }
     public function _beforeSave()
     {
         $orderNumber = rand(1000000, 9999999);

@@ -20,6 +20,7 @@ $productCollection = Mage::getModel("catalog/product")->getCollection();
             <th>Link</th>
             <th>Category ID</th>
             <th>Price</th>
+            <th>Inventory</th>
             <th>Mfr Cost</th>
             <th>Shipping Cost</th>
             <th>Total Cost</th>
@@ -60,6 +61,9 @@ $productCollection = Mage::getModel("catalog/product")->getCollection();
                 </td>
                 <td>
                     <?php print_r($product->getPrice()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getInventory()); ?>
                 </td>
                 <td>
                     <?php print_r($product->getMfrCost()); ?>

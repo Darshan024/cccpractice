@@ -20,24 +20,7 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
         $_product = Mage::getModel('catalog/product')
             ->setData($data)
             ->save();
-        // try {
-        //     if (!$this->getRequest()->isPost()) {
-        //         throw new Exception("Request is not valid");
-        //     }
-        //     $data = $this->getRequest()->getParams('pdata');
-        //     if (!isset($data['price']) || !is_numeric($data['price'])) {
-        //         throw new Exception("Price is required or should be numeric");
-        //     }
-
-        //     echo "saved";
-        //     $id = (isset($data['product_id'])) ? $data['product_id'] : 0;
-        //     $data = $this->getRequest()->getParams('pdata');
-        //     $productModel = Mage::getModel('catalog/product');
-        //     $productModel->setData($data)->save();
-        // } catch (Exception $e) {
-        //     // var_dump($e->getMessage());
-        //     echo $e->getMessage();
-        // }
+        $this->setRedirect('admin/catalog_product/list');
     }
     public function deleteAction()
     {

@@ -1,5 +1,5 @@
 <?php
-class Admin_Block_Order extends Core_Block_Template
+class Admin_Block_Order_Order extends Core_Block_Template
 {
     public function __construct()
     {
@@ -10,17 +10,20 @@ class Admin_Block_Order extends Core_Block_Template
         return Mage::getModel('sales/order')
             ->getCollection();
     }
-    public function getOrderItemData($orderId){
+    public function getOrderItemData($orderId)
+    {
         return Mage::getModel('sales/order_item')
             ->getCollection()
             ->addFieldToFilter('order_id', $orderId);
     }
-    public function getProductData($productId){
+    public function getProductData($productId)
+    {
         return Mage::getModel('catalog/product')
             ->getCollection()
             ->addFieldToFilter('product_id', $productId);
     }
-    public function getAddressData($orderId){
+    public function getAddressData($orderId)
+    {
         return Mage::getModel('sales/order_customer')
             ->getCollection()
             ->addFieldToFilter('order_id', $orderId);

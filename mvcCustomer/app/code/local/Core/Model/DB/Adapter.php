@@ -60,7 +60,6 @@ class Core_Model_DB_Adapter
     {
         $this->connect();
         if (mysqli_query($this->connect(), $query)) {
-            echo $query;
             echo "updated<br>";
         } else {
             echo "not updated";

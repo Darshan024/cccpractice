@@ -49,8 +49,12 @@
             <form method="post" action="<?php echo Mage::getBaseUrl('sales/quote/add') ?>">
                 <input type="hidden" name="productData[product_id]" value="<?php echo $product->getProductId(); ?>">
                 <div class="row">
-                    <label for="quantity">Enter Quantity</label>
-                    <input type="text" name="productData[qty]">
+                    <?php if ($product->getInventory() >= 1) { ?>
+                        <label for="quantity">Enter Quantity</label>
+                        <input type="number" name="productData[qty]" max=<?php echo $product->getInventory() ?> min=1>
+                    <?php } else { ?>
+                        <label for="out">Out of stock</label>
+                    <?php } ?>
                 </div>
                 <div class="row">
                     <input type="submit" value="Add To Cart" name="submit">

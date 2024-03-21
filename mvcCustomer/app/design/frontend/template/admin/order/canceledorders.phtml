@@ -1,0 +1,61 @@
+<body>
+    <div class="order-card">
+        <?php foreach ($this->getOrders()->getData() as $orders): ?>
+            <div class="order-details">
+                <div class="order-element">
+                    <span class="order-label">Order ID:</span>
+                    <span class="order-value">
+                        <?php echo $orders->getId() ?>
+                    </span>
+                </div>
+                <div class="order-element">
+                    <span class="order-label">Order Number:</span>
+                    <span class="order-value">
+                        <?php echo $orders->getOrderNumber() ?>
+                    </span>
+                </div>
+                <div class="order-element">
+                    <span class="order-label">Tax Percent:</span>
+                    <span class="order-value">
+                        <?php echo $orders->getTaxPercent() ?>
+                    </span>
+                </div>
+                <div class="order-element">
+                    <span class="order-label">Grand Total:</span>
+                    <span class="order-value">
+                        <?php echo $orders->getGrandTotal() ?>
+                    </span>
+                </div>
+                <div class="order-element">
+                    <span class="order-label">Payment ID:</span>
+                    <span class="order-value">
+                        <?php echo $orders->getPaymentId() ?>
+                    </span>
+                </div>
+                <div class="order-element">
+                    <span class="order-label">Shipping ID:</span>
+                    <span class="order-value">
+                        <?php echo $orders->getShippingId() ?>
+                    </span>
+                </div>
+                <div class="order-element">
+                    <span class="order-label">Status:</span>
+                    <span class="order-value">
+                        <?php echo $orders->getStatus() ?>
+                    </span>
+                </div>
+                <div class="order-element">
+                    <span class="order-label">Customer ID:</span>
+                    <span class="order-value">
+                        <?php echo $orders->getCustomerId() ?>
+                    </span>
+                </div>
+            </div>
+            <div class="action-buttons">
+                <a class="accept-button"
+                    href="<?php echo Mage::getBaseUrl('admin/order/accept?id=' . $orders->getId()); ?>">Accept</a>
+                <a class="reject-button" 
+                href="<?php echo Mage::getBaseUrl('admin/order/reject?id=' . $orders->getId()); ?>">Reject</a>
+            </div>
+        <?php endforeach ?>
+    </div>

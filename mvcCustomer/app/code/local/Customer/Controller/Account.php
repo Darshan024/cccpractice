@@ -42,37 +42,42 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
     }
     public function loginAction()
     {
-        if (!$this->getRequest()->isPost()) {
-            $layout = $this->getLayout();
-            $layout->getChild('head')->addCss('product/form.css');
-            $child = $layout->getChild("content");
-            $loginForm = $layout->createBlock("customer/login");
-            $child->addChild('form', $loginForm);
-            $layout->toHtml();
-        } elseif ($this->getRequest()->isPost()) {
-            $data = $this->getRequest()->getParams('login');
-            $email = $data['customer_email'];
-            $password = $data['password'];
-            $customerCollection = Mage::getModel('customer/customer')->getCollection()
-                ->addFieldToFilter('customer_email', $email)
-                ->addFieldToFilter('password', $password);
-            $count = 0;
-            $customerId = 0;
-            foreach ($customerCollection->getData() as $customer) {
-                $count++;
-                $customerId = $customer->getCustomerId();
-            }
-            if ($count == 1) {
-                Mage::getSingleton('core/session')->set('customer_id', $customerId);
-                Mage::getSingleton('sales/quote')->initQuote();
-                if (Mage::getSingleton('core/session')->get('get_back_url')) {
-                    $this->setRedirect(Mage::getSingleton('core/session')->get('get_back_url'));
-                } else {
-                    $this->setRedirect('customer/account/dashboard');
+        if (!Mage::getSingleton('core/session')->get('customer_id')) {
+            if (!$this->getRequest()->isPost()) {
+                $layout = $this->getLayout();
+                $layout->getChild('head')->addCss('product/form.css');
+                $child = $layout->getChild("content");
+                $loginForm = $layout->createBlock("customer/login");
+                $child->addChild('form', $loginForm);
+                $layout->toHtml();
+            } elseif ($this->getRequest()->isPost()) {
+                $data = $this->getRequest()->getParams('login');
+                $email = $data['customer_email'];
+                $password = $data['password'];
+                $customerCollection = Mage::getModel('customer/customer')->getCollection()
+                    ->addFieldToFilter('customer_email', $email)
+                    ->addFieldToFilter('password', $password);
+                $count = 0;
+                $customerId = 0;
+                foreach ($customerCollection->getData() as $customer) {
+                    $count++;
+                    $customerId = $customer->getCustomerId();
                 }
-            } else {
-                $this->setRedirect('customer/account/login');
+                if ($count == 1) {
+                    Mage::getSingleton('core/session')->set('customer_id', $customerId);
+                    Mage::getSingleton('sales/quote')->initQuote();
+                    if (Mage::getSingleton('core/session')->get('get_back_url')) {
+                        $this->setRedirect(Mage::getSingleton('core/session')->get('get_back_url'));
+                    } else {
+                        $this->setRedirect('customer/account/dashboard');
+                    }
+                } else {
+                    $this->setRedirect('customer/account/login');
+                }
             }
+        }
+        else{
+            $this->setRedirect('customer/account/logout');
         }
     }
     public function dashboardAction()
@@ -103,12 +108,17 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             foreach ($customerCollection->getData() as $customer) {
                 $customerPassword = $customer->getPassword();
             }
-            if (isset($customerPassword)) {
+            if (isset ($customerPassword)) {
                 echo "user password is : " . $customerPassword;
             } else {
                 echo "email not registred";
             }
         }
+    }
+    public function logoutAction()
+    {
+        Mage::getSingleton('core/session')->unset();
+        $this->setRedirect('customer/account/login');
     }
 }
 ?>

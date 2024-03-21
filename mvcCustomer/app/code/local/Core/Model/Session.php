@@ -34,6 +34,9 @@ class Core_Model_Session
             unset($_SESSION[$key]);
         }
     }
+    public function unset(){
+        session_unset();
+    }
     public function __destruct()
     {
 

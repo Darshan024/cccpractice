@@ -30,7 +30,7 @@ class Core_Model_Abstract
     }
     public function getId()
     {
-        return isset($this->_data[$this->getResource()->getPrimaryKey()]) ?
+        return isset ($this->_data[$this->getResource()->getPrimaryKey()]) ?
             $this->_data[$this->getResource()->getPrimaryKey()] : null;
         ;
     }
@@ -53,7 +53,7 @@ class Core_Model_Abstract
     }
     public function camelCase2UnderScore($str, $separator = "_")
     {
-        if (empty($str)) {
+        if (empty ($str)) {
             return $str;
         }
         $str = lcfirst($str);
@@ -63,7 +63,7 @@ class Core_Model_Abstract
     public function __call($method, $args)
     {
         $name = $this->camelCase2UnderScore(substr($method, 3));
-        return isset($this->_data[$name]) ? $this->_data[$name] : '';
+        return isset ($this->_data[$name]) ? $this->_data[$name] : '';
     }
     public function __set($key, $value)
     {
@@ -92,9 +92,10 @@ class Core_Model_Abstract
     }
     public function removeData($key = null)
     {
-        if(isset($this->_data[$key])){
+        if (isset ($this->_data[$key])) {
             unset($this->_data[$key]);
         }
+        return $this;
     }
     protected function _beforeSave()
     {

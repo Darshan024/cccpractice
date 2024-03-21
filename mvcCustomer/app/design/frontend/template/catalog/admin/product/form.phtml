@@ -64,6 +64,11 @@ $ProductModel = $this->getProduct();
                 value="<?php echo $ProductModel->getPrice(); ?>">
         </div>
         <div class="row">
+            <label for="inventory">Inventory : </label>
+            <input type="number" name="catalog_product[inventory]" id="inventory"
+                value="<?php echo $ProductModel->getInventory(); ?>">
+        </div>
+        <div class="row">
             <label for="mfr_cost">Manufacture Cost</label>
             <input type="number" name="catalog_product[mfr_cost]" id="mfr_cost"
                 value="<?php echo $ProductModel->getMfrCost(); ?>">

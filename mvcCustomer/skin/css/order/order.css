@@ -1,0 +1,49 @@
+h1,
+h2 {
+    margin: 10px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    text-align: left;
+}
+
+.order-details {
+    margin-bottom: 20px;
+}
+
+.order-items {
+    width: 60%;
+    margin: 0 auto;
+}
+a.cancel-order-btn {
+    /* General button styles */
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-decoration: none; /* Remove underline */
+    color: #333; /* Text color */
+    font-weight: bold;
+  
+    /* Hover effect (optional) */
+    transition: background-color 0.2s ease-in-out;
+  
+    /* Change background color on hover */
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+  
+  

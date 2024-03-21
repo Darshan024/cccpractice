@@ -119,7 +119,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
         }
         $this->addData('shipping_id', $id)->save();
     }
-    public function addpaymentMethod($request)
+    public function addPaymentMethod($request)
     {
         $this->initQuote();
         if ($this->getId()) {
@@ -145,54 +145,49 @@ class Sales_Model_Quote extends Core_Model_Abstract
         $this->initQuote();
         if ($this->getId()) {
             $order = $this->convertQuoteToOrder();
-            $address = $this->convertAddress($order);
-            $this->convertItems($order);
-            $paymentId = $this->convertPayment($order);
-            $shippingId = $this->convertShipping($order);
+            $address = $this->convertAddress($order->getId());
+            $item = $this->convertItems($order->getId());
+            $paymentId = $this->convertPayment($order->getId());
+            $shippingId = $this->convertShipping($order->getId());
 
             $this->addData('order_id', $order->getId())->save();
 
             $order->addData('payment_id', $paymentId);
             $order->addData('shipping_id', $shippingId);
             $order->save();
+            $this->addHistory($order->getId());
         }
 
     }
     public function convertQuoteToOrder()
     {
-        $this->removeData('order_id');
-        $this->removeData('quote_id');
-        $this->removeData('shipping_id');
-        $this->removeData('payment_id');
-        return Mage::getModel('sales/order')->setData($this->getData())->save();
+        $order = Mage::getModel('sales/order')->addOrder($this);
+        return $order;
     }
-    public function convertItems($order)
+    public function convertItems($orderId)
     {
-        foreach ($this->getItemCollection()->getData() as $_item) {
-            $_item->removeData('quote_id');
-            $_item->removeData('item_id');
-            $_item->addData('order_id', $order->getId());
-            $itemData = $_item->getData();
-            Mage::getModel('sales/order_item')->setData($itemData)->save();
+        if ($this->get()) {
+            foreach ($this->getItemCollection()->getData() as $_item) {
+                $_item->addData('order_id', $orderId);
+                Mage::getModel('sales/order_item')->addOrderItem($_item);
+            }
+            return $this;
         }
-
     }
-    public function convertAddress($order)
+    public function convertAddress($orderId)
     {
         $this->initQuote();
         if ($this->getId()) {
             $addressData = Mage::getModel('sales/quote_customer')
                 ->getCollection()
-                ->addFieldToFilter('quote_id', $this->getQuoteId())
+                ->addFieldToFilter('quote_id', $this->getId())
                 ->getFirstItem();
-            $addressData->removeData('quote_customer_id');
-            $addressData->removeData('quote_id');
-            $addressData->addData('order_id', $order->getId());
-            $address = Mage::getModel('sales/order_customer')->setData($addressData->getData())->save();
+            $addressData->addData('order_id', $orderId);
+            $address = Mage::getModel('sales/order_customer')->addAddress($addressData);
+            return $address;
         }
-        return $address;
     }
-    public function convertPayment($order)
+    public function convertPayment($orderId)
     {
         $this->initQuote();
         if ($this->getId()) {
@@ -200,14 +195,12 @@ class Sales_Model_Quote extends Core_Model_Abstract
                 ->getCollection()
                 ->addFieldToFilter('quote_id', $this->getId())
                 ->getFirstItem();
-            $paymentdata->removeData('payment_id');
-            $paymentdata->removeData('quote_id');
-            $paymentdata->addData('order_id', $order->getId());
-            $paymentId = Mage::getModel('sales/order_payment')->setData($paymentdata->getData())->save()->getId();
+            $paymentdata->addData('order_id', $orderId);
+            $paymentId = Mage::getModel('sales/order_payment')->addPayment($paymentdata)->getId();
         }
         return $paymentId;
     }
-    public function convertShipping($order)
+    public function convertShipping($orderId)
     {
         $this->initQuote();
         if ($this->getId()) {
@@ -215,12 +208,15 @@ class Sales_Model_Quote extends Core_Model_Abstract
                 ->getCollection()
                 ->addFieldToFilter('quote_id', $this->getId())
                 ->getFirstItem();
-            $shippingdata->removeData('shipping_id');
-            $shippingdata->removeData('quote_id');
-            $shippingdata->addData('order_id', $order->getId());
-            $shippingId = Mage::getModel('sales/order_shipping')->setData($shippingdata->getData())->save()->getId();
+            $shippingdata->addData('order_id', $orderId);
+            $shippingId = Mage::getModel('sales/order_shipping')->addShipping($shippingdata)->getId();
         }
         return $shippingId;
+    }
+    public function addHistory($orderId)
+    {
+        Mage::getModel('sales/order_history')->addHistory($orderId);
+        return $this;
     }
 }
 

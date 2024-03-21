@@ -12,11 +12,20 @@ class Sales_Model_Order_Item extends Core_Model_Abstract
         $product = Mage::getModel('catalog/product')->load($id);
         return $product;
     }
+    public function addOrderItem($_item)
+    {
+        $_item->removeData('quote_id');
+        $_item->removeData('item_id');
+        $this->setData($_item->getData())->save();
+    }
     protected function _beforeSave()
     {
         $product = $this->getProductCollection($this->getProductId());
         $this->addData('product_color', $product->getColor());
         $this->addData('product_name', $product->getName());
+        $inventory = $product->getInventory();
+        $inventory = $inventory - $this->getQty();
+        $product->addData('inventory', $inventory)->save();
     }
 }
 ?>

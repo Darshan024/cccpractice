@@ -1,0 +1,68 @@
+.order-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px;
+    max-width: 600px;
+    /* Limit the maximum width */
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.order-details {
+    display: flex;
+    /* Arrange elements horizontally */
+    flex-direction: column;
+    /* Stack elements vertically */
+    gap: 10px;
+    /* Add spacing between order elements */
+}
+
+/* Styling for individual order elements */
+.order-element {
+    display: flex;
+    /* Arrange label and value horizontally */
+    align-items: center;
+    /* Vertically align content within element */
+}
+
+/* Label for order properties */
+.order-label {
+    font-weight: bold;
+    width: 120px;
+    /* Set fixed width for labels */
+    margin-right: 10px;
+    /* Add spacing after label */
+}
+
+/* Value for order properties */
+.order-value {
+    flex: 1;
+    /* Allow remaining space for the value */
+}
+
+/* Buttons for admin actions */
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.accept-button,
+.reject-button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.accept-button {
+    background-color: #4caf50;
+    color: white;
+}
+
+.reject-button {
+    background-color: #f44336;
+    color: white;
+}
