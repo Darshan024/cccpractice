@@ -7,9 +7,9 @@ class Sales_Model_Quote_Payment extends Core_Model_Abstract{
     }
     public function getPaymentOption(){
         $paymentOption = [
-            "COD" => "Cash On Delivary",
-            "CreditCard" => "Credit-card",
-            "UPI" => "UPI payment"
+            "cod" => "Cash On Delivary",
+            "creditcard" => "Credit card",
+            "upi" => "UPI payment"
         ];
         return $paymentOption;
     }

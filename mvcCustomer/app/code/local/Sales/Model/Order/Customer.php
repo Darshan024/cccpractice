@@ -7,10 +7,12 @@ class Sales_Model_Order_Customer extends Core_Model_Abstract
         $this->_resourceClass = 'Sales_Model_Resource_Order_Customer';
         $this->_collectionClass = 'Sales_Model_Resource_Collection_Order_Customer';
     }
-    public function addAddress($addressData){
-        $addressData->removeData('quote_customer_id');
-        $addressData->removeData('quote_id');
-        Mage::getModel('sales/order_customer')->setData($addressData->getData())->save();
+    public function addAddress($addressData)
+    {
+        Mage::getModel('sales/order_customer')->setData($addressData->getData())
+            ->removeData('quote_customer_id')
+            ->removeData('quote_id')
+            ->save();
         return $this;
     }
 }

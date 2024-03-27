@@ -15,5 +15,8 @@ class Cart_Block_View extends Core_Block_Template
         $quoteId = Mage::getSingleton('core/session')->get('quote_id');
         return Mage::getModel('sales/quote_item')->getCollection()->addFieldToFilter('quote_id', $quoteId);
     }
+    public function getProduct($id){
+        return Mage::getModel('catalog/product')->load($id);
+    }
 }
 ?>

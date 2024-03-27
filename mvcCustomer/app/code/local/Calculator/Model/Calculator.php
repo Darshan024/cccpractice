@@ -13,16 +13,16 @@ class Calculator_Model_Calculator extends Core_Model_Abstract
     }
     protected function _beforeSave()
     {
-            if ($this->getOperator() == 'add') {
+            if ($this->getOperator() == '+') {
                 $result = $this->getFromNumber() + $this->getToNumber();
 
-            } elseif ($this->getOperator() == 'sub') {
+            } elseif ($this->getOperator() == '-') {
                 $result = $this->getFromNumber() - $this->getToNumber();
 
-            } elseif ($this->getOperator() == 'mul') {
+            } elseif ($this->getOperator() == '*') {
                 $result = $this->getFromNumber() * $this->getToNumber();
 
-            } elseif ($this->getOperator()== 'div') {
+            } elseif ($this->getOperator()== '/') {
                 $result = $this->getFromNumber() / $this->getToNumber();
             }
         

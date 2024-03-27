@@ -9,10 +9,12 @@ class Sales_Model_Order_History extends Core_Model_Abstract
     }
     public function addHistory($order)
     {
+        $defaultstatus = Sales_Model_Status::DEFAULT_ORDER_STATUS_tEXT;
+        $defaultaction = Sales_Model_Status::DEFAULT_ORDER_STATUS;
         $this->addData('order_id', $order);
-        $this->addData('from_status', 'pending');
-        $this->addData('to_status', 'pending');
-        $this->addData('action_by', 1);
+        $this->addData('from_status', '');
+        $this->addData('to_status',$defaultstatus);
+        $this->addData('action_by', $defaultaction);
         $this->save();
         return $this;
     }
@@ -20,29 +22,18 @@ class Sales_Model_Order_History extends Core_Model_Abstract
     {
         $data = [
             'order_id' => $order['order_id'],
-            'from_status' => $this->getfromStatus($order['order_id']),
+            'from_status' => $this->getfromStetus($order['order_id']),
             'to_status' => $order['status'],
             'action_by' => $actionBy
         ];
         $this->setData($data)->save();
         return $this;
     }
-    public function getfromStatus($orderId)
+    public function getfromStetus($orderId)
     {
         $order = Mage::getModel('sales/order')->getCollection()->addFieldToFilter('order_id', $orderId)->getFirstItem();
         $status = $order->getStatus();
         return $status;
-    }
-    public function getStatusOptions(){
-        $statusOptions = [
-            "pending" => "Pending",
-            "canceled" => "Canceled",
-            "shipped" => "Shipped",
-            "declined" => "Declined",
-            "funded" => "Funded",
-            "completed" => "Completed"
-        ];
-        return $statusOptions;
     }
 }
 ?>

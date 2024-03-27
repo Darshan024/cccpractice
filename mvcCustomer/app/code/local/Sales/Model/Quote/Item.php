@@ -52,7 +52,6 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
             $this->setId($item->getId());
         }
         $this->save();
-        print_r($item);
         return $this;
     }
     public function updateItem(Sales_Model_Quote $quote, $id, $qty)

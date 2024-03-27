@@ -22,15 +22,26 @@ $customer = $this->getCustomerDetails();
         </td>
         <td>
             <?php echo $customer->getCustomerEmail(); ?>
-            
+
         </td>
     </tr>
 </table>
-order details
 <?php echo '<pre>';
-print_r($this->getOrder());
+$order = $this->getOrder();
+print_r($order);
+echo 'shippingId';
+print_r($this->getShippingData($order->getShippingId()));
+print_r($this->getPaymentData($order->getPaymentId()));
+print_r($order->getPaymentId());
+foreach ($this->getHistoryData($order->getId())->getData() as $item) {
+    print_r($item);
+}
+
 foreach ($this->getOrderItems()->getData() as $item) {
     print_r($item);
+    ?>
+    <h3>Product Details</h3>
+    <?php
     print_r($this->getProductData($item->getProductId()));
 }
 

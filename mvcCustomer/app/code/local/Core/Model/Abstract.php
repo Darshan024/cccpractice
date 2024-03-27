@@ -128,5 +128,3 @@ class Core_Model_Abstract
         return $this;
     }
 }
-
-?>

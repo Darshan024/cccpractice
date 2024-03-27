@@ -1,7 +1,7 @@
 <?php
 class Customer_Controller_Account extends Core_Controller_Front_Action
 {
-    protected $_allowedAction = ['register', 'login', 'forgotpassword'];
+    protected $_allowedAction = ['register', 'save', 'login', 'forgotpassword'];
     public function init()
     {
         $this->getRequest()->getActionName();
@@ -75,9 +75,9 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
                     $this->setRedirect('customer/account/login');
                 }
             }
-        }
-        else{
-            $this->setRedirect('customer/account/logout');
+        } else {
+            Mage::getSingleton('core/session')->unset();
+            $this->setRedirect('customer/account/login');
         }
     }
     public function dashboardAction()

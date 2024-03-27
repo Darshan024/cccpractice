@@ -22,6 +22,7 @@ class Core_Model_DB_Adapter
     }
     public function fetchAll($query)
     {
+
         $row = [];
         $result = $this->connect()->query($query);
         while ($_row = mysqli_fetch_assoc($result)) {
@@ -39,7 +40,7 @@ class Core_Model_DB_Adapter
     }
     public function fetchRow($query)
     {
-        echo $query;
+        // echo $query;
 
         $row = [];
         $this->connect();

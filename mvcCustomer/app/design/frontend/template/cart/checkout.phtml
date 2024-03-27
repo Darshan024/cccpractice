@@ -29,12 +29,7 @@ $customerEmail = $this->getCustomerEmail();
                     <label>Row Total :</label>
                     <?php echo $item->getRowTotal(); ?>
                 </div>
-                <br>
-                <div class="quote-item-actions">
-                    <a href="<?php echo Mage::getBaseUrl('sales/quote/delete?id=') . $item->getItemId() ?>">Delete</a>
-                    <a href="<?php echo Mage::getBaseUrl('sales/quote/update?id=') . $item->getItemId() ?>">Update</a>
-                </div>
-                <br>
+
             <?php } ?>
         </div>
     </div>
@@ -178,26 +173,46 @@ $customerEmail = $this->getCustomerEmail();
                     </select>
                 </div>
             </div>
-
-            <h2>Payment Options</h2>
-            <div class="form-group">
-                <div class="field-group">
-                    <label for="payment_options" class="label-payment-options">Payment Options:</label>
-                    <select id="payment_options" name="sales_quote_payment_method[payment_method]"
-                        class="select-payment-options">
-                        <?php $paymentOptions = $this->getPaymentOption(); ?>
-                        <?php foreach ($paymentOptions as $key => $value) { ?>
-                            <option value="<?php echo $key ?>">
-                                <?php echo $value ?>
-                            </option>
-                        <?php } ?>
-                    </select>
+            <div class="payment">
+                <h2>Payment Options</h2>
+                <div class="form-group">
+                    <div class="field-group">
+                        <label for="payment_options" class="label-payment-options">Payment Options:</label>
+                        <select id="payment_options" name="sales_quote_payment_method[payment_method]"
+                            class="select-payment-options">
+                            <?php $paymentOptions = $this->getPaymentOption(); ?>
+                            <?php foreach ($paymentOptions as $key => $value) { ?>
+                                <option value="<?php echo $key ?>">
+                                    <?php echo $value ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group input-creditcard" id="creditcard-fields">
+                    <label for="card_number">Card Number:</label>
+                    <input type="text" id="card_number" name="sales_quote_payment_method[card_number]"
+                        placeholder="Enter card number" required>
                 </div>
             </div>
             <input type="submit" value="Place Order" class="submit-button">
         </form>
     </div>
 </section>
+<script>
+    const paymentOptionsSelect = document.getElementById('payment_options');
+    const creditCardFields = document.getElementById('creditcard-fields');
+
+    paymentOptionsSelect.addEventListener('change', function () {
+        const selectedOption = this.value;
+        if (selectedOption === 'creditcard') {
+            creditCardFields.style.display = 'block';
+        } else {
+            creditCardFields.style.display = 'none';
+        }
+    });
+    creditCardFields.style.display = 'none';
+</script>
 
 <script>
     function copyBillingToShipping() {

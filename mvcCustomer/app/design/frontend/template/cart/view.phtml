@@ -14,14 +14,14 @@ foreach ($quote->getData() as $_quote) { ?>
         <?php echo $_quote->getGrandTotal(); ?>
     </div>
     <div>
-        <a href="<?php echo Mage::getBaseUrl('cart/checkout/form');?>">Checkout</a>
+        <a href="<?php echo Mage::getBaseUrl('cart/checkout/form'); ?>">Checkout</a>
     </div>
 <?php }
 $items = $this->getQuoteItems(); ?>
 <h2>Items</h2>
 <div class="quote-item">
     <?php foreach ($items->getData() as $item) { ?>
-        
+        <?php $Product = $this->getProduct($item->getProductId()); ?>
         <div class="quote-items">
             <label>Item Id :</label>
             <?php echo $item->getItemId(); ?>
@@ -30,6 +30,12 @@ $items = $this->getQuoteItems(); ?>
             <label>Product Id :</label>
             <?php echo $item->getProductId(); ?>
         </div>
+        <div class="quote-items">
+            <label>Color:</label>
+            <?php echo $Product->getColor();
+            $image = $Product->getImageLink() ?>
+        </div>
+        <img src="<?php echo Mage::getBaseUrl("media/product/$image") ?>" style="width:15%;">
         <div class="quote-items">
             <label>Price :</label>
             <?php echo $item->getPrice(); ?>

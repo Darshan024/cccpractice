@@ -1,0 +1,16 @@
+<form method="post" action="<?php echo Mage::getBaseUrl('agentbranch/agentbranch/save') ?>" id="form">
+    <select name="id" id="parent">
+        <?php foreach ($this->getParents()->getData() as $parent) { ?>
+            <option value="<?php echo $parent->getAgentId() ?>" <?php echo $this->getId() == $parent->getAgentId() ? 'selected' : ''; ?>>
+                <?php echo $parent->getName() ?>
+            </option>
+        <?php } ?>
+    </select> <select name="data[child]">
+        <?php foreach ($this->getChilds()->getData() as $parent) { ?>
+            <option value="<?php echo $parent->getId() ?>">
+                <?php echo $parent->getName() ?>
+            </option>
+        <?php } ?>
+    </select>
+    <input type="submit">
+</form>

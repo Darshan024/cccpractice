@@ -10,10 +10,10 @@ $data = $this->getForm();
     <input type="number" name="calculator[from_number]" value="<?php echo $data->getFromNumber()?>">
     <label>Operator</label>
     <select name="calculator[operator]">
-        <option value="add">+</option>
-        <option value="sub">-</option>
-        <option value="mul">*</option>
-        <option value="div">/</option>
+        <option value="+" <?php echo ($data->getOperator()=='+')?'selected':''; ?>>+</option>
+        <option value="-" <?php echo ($data->getOperator()=='-')?'selected':''; ?>>-</option>
+        <option value="*" <?php echo ($data->getOperator()=='*')?'selected':''; ?>>*</option>
+        <option value="/" <?php echo ($data->getOperator()=='/')?'selected':''; ?>>/</option>
     </select>
     <label>Input Box 2:</label>
     <input type="text" name="calculator[to_number]" value="<?php echo $data->getToNumber()?>">

@@ -6,9 +6,10 @@ class Sales_Model_Order_Shipping extends Core_Model_Abstract{
         $this->_collectionClass = "Sales_Model_Resource_Collection_Order_Shipping";
     }
     public function addShipping($shippingdata){
-        $shippingdata->removeData('shipping_id');
-        $shippingdata->removeData('quote_id');
-        $this->setData($shippingdata->getData())->save();
+        $this->setData($shippingdata->getData())
+                ->removeData('shipping_id')
+                ->removeData('quote_id')                
+                ->save();
         return $this;
     }
 }

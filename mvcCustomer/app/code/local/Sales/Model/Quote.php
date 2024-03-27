@@ -8,22 +8,6 @@ class Sales_Model_Quote extends Core_Model_Abstract
         $this->_collectionClass = 'Sales_Model_Resource_Collection_Quote';
         $this->_modelClass = 'sales/quote';
     }
-
-    // public function initQuote()
-    // {
-    //     if (Mage::getSingleton("core/session")->get("quote_id")) {
-    //         $quoteId = Mage::getSingleton("core/session")->get("quote_id");
-    //         $this->load($quoteId);
-    //     } elseif (!$this->getId()) {
-    //         $quote = Mage::getModel("sales/quote")
-    //             ->setData(["tax_percent" => 8, "grand_total" => 0])
-    //             ->save();
-    //         Mage::getSingleton("core/session")->set("quote_id", $quote->getId());
-    //         $quoteId = $quote->getId();
-    //         $this->load($quoteId);
-    //     }
-    //     return $this;
-    // }
     public function initQuote()
     {
         $quoteId = Mage::getSingleton("core/session")->get("quote_id");
@@ -127,18 +111,18 @@ class Sales_Model_Quote extends Core_Model_Abstract
         }
         $this->addData('payment_id', $id)->save();
     }
-    public function getPayment()
-    {
-        return Mage::getModel('sales/quote_payment')
-            ->getCollection()
-            ->addFieldToFilter('quote_id', $this->getId());
-    }
-    public function getShipping()
-    {
-        return Mage::getModel('sales/quote_shipping')
-            ->getCollection()
-            ->addFieldToFilter('quote_id', $this->getId());
-    }
+    // public function getPayment()
+    // {
+    //     return Mage::getModel('sales/quote_payment')
+    //         ->getCollection()
+    //         ->addFieldToFilter('quote_id', $this->getId());
+    // }
+    // public function getShipping()
+    // {
+    //     return Mage::getModel('sales/quote_shipping')
+    //         ->getCollection()
+    //         ->addFieldToFilter('quote_id', $this->getId());
+    // }
 
     public function convert()
     {
@@ -176,7 +160,6 @@ class Sales_Model_Quote extends Core_Model_Abstract
     }
     public function convertAddress($orderId)
     {
-        $this->initQuote();
         if ($this->getId()) {
             $addressData = Mage::getModel('sales/quote_customer')
                 ->getCollection()
@@ -189,7 +172,6 @@ class Sales_Model_Quote extends Core_Model_Abstract
     }
     public function convertPayment($orderId)
     {
-        $this->initQuote();
         if ($this->getId()) {
             $paymentdata = Mage::getModel('sales/quote_payment')
                 ->getCollection()
@@ -202,7 +184,6 @@ class Sales_Model_Quote extends Core_Model_Abstract
     }
     public function convertShipping($orderId)
     {
-        $this->initQuote();
         if ($this->getId()) {
             $shippingdata = Mage::getModel('sales/quote_shipping')
                 ->getCollection()
